@@ -8,7 +8,7 @@
 
 В данный момент копирование из шаблона для контейнера инициллизируется как так:
 
-```
+```javascript
     var newFormAdder = new  FormFieldGroupsDinamicAdder();
 
     newFormAdder.init(
@@ -25,7 +25,7 @@
 Где initPeopleGroupFileds -- функция, которая вызывается для инициллизации
 полей из очередной добавленной группы, например она может выглядеть как-то так:
 
-```
+```javascript
 function initAffectedPeopleGroupFileds ()
 {
 
