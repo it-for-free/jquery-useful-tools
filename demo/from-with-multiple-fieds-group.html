@@ -9,15 +9,61 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <h1>Редактирование информации о студентах группы</h1>
         <div id="main-content">
             
-            <from id="students-data">
+            
+            <form id="students-data">
                 
-               <input type="text" name="group-group" value=""> 
-            </from>
+                <div class="filed-group"> 
+                    <label for="group-name">Назвавание (номер группы):</label>
+                    <input type="text" name="group-name" value="">
+                </div>
+                
+                <div class="filed-group">
+                    <label for="group-name">Дополнительная информация о группе:</label>
+                    <textarea name="group-name"> </textarea>
+                </div>
+                <hr>
+                <h4>Студенты группы:</h4>
+                <br>
+                <br>
+                <a href="#" id="add-student"> [Добавить студента] </a>
+                
+                <!--  Далее, контейнер, в который можно добавлять
+                       дублирующиеся группы полей
+                 (вложенные сущности)-->
+                <div id="students-list"> 
+                    
+                </div>
+                
+                
+                
+                <button type="submit"> Сохранить </button>
+                
+            </form>
+            
+            
+            <div id="sudent-info-template" style="display: none">
+                <div class="filed-group"> 
+                    <label for="students[%sudent-number%][name]">ФИО:</label>
+                    <input type="text" name="students[%sudent-number%][fio]" value="">
+                </div>
+                
+                <div class="filed-group">
+                    <label for="students[%sudent-number%][info]">Примечания:</label>
+                    <textarea name="students[%sudent-number%][info]"> </textarea>
+                </div>
+            </div>   
+            
         </div>
-            
-            
-            
+        
+        <h2>Как это работает</h2>
     </body>
+    <style type="text/css">
+        form {
+            background-color: rgb(153, 255, 153);
+            border: 1px;
+        }
+    </style>
 </html>
