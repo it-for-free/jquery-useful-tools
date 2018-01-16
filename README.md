@@ -33,6 +33,8 @@ $( "document" ).ready(function(){
 
 ```
 
+**См. демонстрацию** в `demo/add-fileds-group-from-hidden-template/from-with-multiple-fieds-group.html`
+
 ### Все параметры ####
 
 
