@@ -16,6 +16,13 @@
      * подразумевается к вызову на конкретонм элементе (контейнере всех групп)
      * по уникальному селектору
      * 
+     * Плагин НЕ обеспечивает непрерыной нумерации групп полей
+     * в общем случае после окончани редактирования формы
+     * (в случае удалений некоторых групп полей пользоватлем),
+     * НО пришедшие с бэкэнда или добавленные на форму любым другим
+     * способом группы полей (т.е. не спомощью данного плагина)
+     * ДОЛЖНЫ БЫТЬ пронумерованы НЕПРЕРЫВНО
+     * 
      * @returns {type.fn.unbindAllForChildren.$this}
      */
     $.fn.fromFiledsGroupAdderFromHiddenTemplate = function(options) {
@@ -29,7 +36,7 @@
             templateContainerSelector:   '#template-container',
             filedsGroupSelector:   '.template-selector',
             replaceGroupNumerRegexp:   /%fileds_group_number%/g,
-            parentLevelForDelete: 1, 
+            parentLevelForDelete: 0, 
             filedGroupsCounterInitValue: 0,
             afterAddCallback:  function($addedGroup) {}
             
@@ -130,7 +137,7 @@
 
         /* тут надо написать нормальноую инициаллизацию извне */
 
-        researchIndex = $mainFiedsGroupsContainer.find(filedsGroupContainerSelector).length; // определяем исходное (пришедшее с бэкэнда) число групп полей
+        researchIndex = researchIndex + $mainFiedsGroupsContainer.find(filedsGroupContainerSelector).length; // определяем исходное (пришедшее с бэкэнда) число групп полей
 
        /**
         * Добавление группы полей (прикручиваем обработчики)
@@ -158,8 +165,11 @@
 
            /* Удаление группы полей */
            $(deleteFieldsGroupControlElementSelector).on("click", function() { // удаляем элемент
-               $element = $(this).nthParent(1); // получаем родителя
-               self.removeFiledsGroup($element);
+            var $element = $(this).nthParent(settings.parentLevelForDelete); // получаем родителя
+            console.log('уровень:', settings.parentLevelForDelete );
+            console.log('будем удалять:', $element );
+            
+            self.removeFiledsGroup($element);
                return false;
            });
        }
@@ -181,9 +191,7 @@
                }, 600, function() {
                    $(this).remove(); 
                }
-           );
-
-           researchIndex--;    
+           );   
 
        }
 
@@ -206,6 +214,7 @@
 
            $newFiledsGroup.find('*').removeAttr('id'); // все потоми должны быть неуникальными
 
+           console.log ('добавляем в' , $mainFiedsGroupsContainer);
            $newFiledsGroup.appendTo($mainFiedsGroupsContainer).show('slow');
 
            console.log('add row!!', 'RR=', $filedsGroupTemplateContainer, $mainFiedsGroupsContainer);
