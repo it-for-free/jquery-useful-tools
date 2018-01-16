@@ -161,7 +161,7 @@ function FormFieldGroupsDinamicAdder()
         
         /* Удаление группы полей */
         $(deleteFieldsGroupControlElementSelector).on("click", function() { // удаляем элемент
-            $element = $(this).nthParent(1); // получаем родителя
+            $element = $(this).nthParent(settings.parentLevelForDelete); // получаем родителя
             self.removeFiledsGroup($element);
             return false;
         });
