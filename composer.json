@@ -1,0 +1,15 @@
+{
+    "name": "it-for-free/jquery-useful-tools",
+    "type": "library",
+    "description": "nested form filed groups adder",
+    
+    "keywords": [
+        "js", "jquery", "nested form filed groups adder"
+    ],
+    
+    "homepage": "http://fkn.ktu10.com/?q=iff-itforfree",
+    "license": "MIT",
+
+    "require": {},
+    "autoload": {}
+}
