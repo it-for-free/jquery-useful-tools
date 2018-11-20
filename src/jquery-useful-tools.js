@@ -381,7 +381,7 @@
                 templateDataFieldAdditionalPart: '-template'
             });
                 
-
+            $clonedTemplate.find('input').val('');
             
             $container.append($clonedTemplate);
             initParentElementsHandlersFunction($clonedTemplate); // выполняем необходимые действия типа привязки событий
@@ -937,6 +937,4 @@
         }
     
     }
-   
- 
 }( jQuery ));
