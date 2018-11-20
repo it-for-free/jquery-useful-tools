@@ -363,12 +363,13 @@
 //            
 //            $container.incDataAttrCounter(thisSelector);
             
-//            console.log('this', this);
+//            console.log('this file');
 //            console.log('contorol-element:', $controlElement.attr('id'), $controlElement);
 //            console.log('container:', containerParentLevel,  $container);
 //            console.log('template:', parentLevel, $template);
             
                     // $container.incDataAttrCounter(thisSelector); // накручиваем счетчик
+            
             var $clonedTemplate = $template.cloneWithDataAttrs();
             
             $clonedTemplate.hide();
@@ -377,7 +378,7 @@
             $clonedTemplate.replaceInChildrenAttrsUsingTemplatesFromDataFileds({
                 searchRegexp:     namesInParentResearchRegexp,
                 newValue:         $container.getDataAttrCounter(thisSelector),
-                attributeNames:   ['name', 'for'],
+                attributeNames:   ['name', 'for', 'class'],
                 templateDataFieldAdditionalPart: '-template'
             });
                 
