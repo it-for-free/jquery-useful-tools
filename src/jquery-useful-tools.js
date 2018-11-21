@@ -9,7 +9,6 @@
  * 
  */
 (function($) {
-    
 
     /**
      * Плагин добавления групп полей на форму,
@@ -166,8 +165,6 @@
            /* Удаление группы полей */
            $(deleteFieldsGroupControlElementSelector).on("click", function() { // удаляем элемент
             var $element = $(this).nthParent(settings.parentLevelForDelete); // получаем родителя
-            console.log('уровень:', settings.parentLevelForDelete );
-            console.log('будем удалять:', $element );
             
             self.removeFiledsGroup($element);
                return false;
@@ -201,11 +198,6 @@
         */
        this.addNewFiledsGroup =  function () {
 
-           console.log('add fileds group...');
-
-
-
-           console.log(filedsGroupContainerSelector);
            var $newFiledsGroup = $($filedsGroupTemplateContainer.html()
                    .replace(replaceGroupNumerRegexp, researchIndex));
 
@@ -214,10 +206,8 @@
 
            $newFiledsGroup.find('*').removeAttr('id'); // все потоми должны быть неуникальными
 
-           console.log ('добавляем в' , $mainFiedsGroupsContainer);
            $newFiledsGroup.appendTo($mainFiedsGroupsContainer).show('slow');
 
-           console.log('add row!!', 'RR=', $filedsGroupTemplateContainer, $mainFiedsGroupsContainer);
            researchIndex++;
 
            return false;
@@ -266,11 +256,8 @@
         if (!jswl.inArray(elementId, __alreadyInitIdsStorage[substorageName])) {
             __alreadyInitIdsStorage[substorageName].push(elementId); // запоминаем значение
             result = false;
-            //console.log(elementId, substorageName, 'new!');
         } 
-//        else {
-//            console.log(elementId, substorageName, 'already init');
-//        }
+
 
         return result;
     }
@@ -283,12 +270,10 @@
      * (в реализации использованы относительные селекторы).
      * Таким образом сам управляющий элемент тоже окажется продублированным.
      * 
-     * По факту является обёрткой, которая проверяет, 
+     * По факту является обёрткой для $('').__relativeParentInParentContainerDublicatorForUnique(), которая проверяет, 
      * которая добавляет все выбранным элементам уникальный id (если такового нет),
      * а затем уже каждому из них по уникальному селектору назначает обработчика,
      * который будет отсчитывать родителей от конкретного уникального элемента.
-     * 
-     * Является обёрткой для $('').__relativeParentInParentContainerDublicatorForUnique()
      * 
      * 
      * {
@@ -302,6 +287,8 @@
                                            в аттрибутах подстроки на порядокый номер данного элемента в родителе
         "afterCloneCallback": function($addedGroup) {}    НЕ ОБЯЗАТЕЛЕН: эта функция будет 
                                               вызвна для копируемого шаблона (вы можете провести дополнительные инициллизации)
+        copyValuesInsteadOtherPlaceholders      // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Делать ли замену плейсхолдеров, которые остались в шаблоне значения атрибута после подстановки вместо replaceRegexp (основная)
+        checkNameFragmentIsPlaceholderCallback  // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером 
         }
      * @param {object}   options          настройки.
      * @returns {window.$|jQuery|$|_$|@pro;window@pro;$|Window.$}
@@ -314,7 +301,10 @@
             "containerParentLevel": 1,   
             "parentLevel": 0, 
             "replaceRegexp": /%fields_group_number_2%/g,
-            "afterCloneCallback": function($addedGroup) {}   
+             copyValuesInsteadOtherPlaceholders: false, 
+            checkNameFragmentIsPlaceholderCallback: function(attrSubstr) {
+                return jswl.checkForSubstring(attrSubstr, '%');
+            }   
         }, options);
 
         $(this).uniqueId();
@@ -349,6 +339,8 @@
                                            в аттрибутах подстроки на порядокый номер данного элемента в родителе
         "afterCloneCallback": function($addedGroup) {}   НЕ ОБЯЗАТЕЛЕН: эта функция будет 
                                               вызвна для копируемого шаблона (вы можете провести дополнительные инициллизации)
+        copyValuesInsteadOtherPlaceholders      // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Делать ли замену плейсхолдеров, которые остались в шаблоне значения атрибута после подстановки вместо replaceRegexp (основная)
+        checkNameFragmentIsPlaceholderCallback  // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером 
         }
      * @param {object}   options          настройки.
      * @returns {window.$|jQuery|$|_$|@pro;window@pro;$|Window.$}
@@ -360,7 +352,11 @@
             "containerParentLevel": 1,   
             "parentLevel": 0, 
             "replaceRegexp": /%fields_group_number_2%/g,
-            "afterCloneCallback": function($addedGroup) {}   
+            "afterCloneCallback": function($addedGroup) {},
+            copyValuesInsteadOtherPlaceholders: false, 
+            checkNameFragmentIsPlaceholderCallback: function(substr) {
+                return false;
+            }
         }, options);
         
         var controlElementSelector = settings.thisSelector; 
@@ -371,25 +367,11 @@
         var $template =  $controlElement.nthParent(settings.parentLevel);
             
         $container.incDataAttrCounter(settings.thisSelector); // фактически докрутит счетчик до нужного значения, по числу элементов в контейнере ещё до лкика на добавление очередного 
-        
-       // console.log('Инициаллизация плагина: ', $controlElement.attr('id'), $controlElement);
+
         this.click(onClick);
 
         function onClick(){ 
-            
-//            var $controlElement = $(this);
-//            var $container = $controlElement.nthParent(containerParentLevel);
-//            var $template =  $controlElement.nthParent(parentLevel);
-//            
-//            $container.incDataAttrCounter(thisSelector);
-            
-//            console.log('this file');
-//            console.log('contorol-element:', $controlElement.attr('id'), $controlElement);
-//            console.log('container:', containerParentLevel,  $container);
-//            console.log('template:', parentLevel, $template);
-            
-                    // $container.incDataAttrCounter(thisSelector); // накручиваем счетчик
-            
+ 
             var $clonedTemplate = $template.cloneWithDataAttrs();
             
             $clonedTemplate.hide();
@@ -399,21 +381,19 @@
                 searchRegexp:     settings.replaceRegexp,
                 newValue:         $container.getDataAttrCounter(settings.thisSelector),
                 attributeNames:   ['name', 'for', 'class'],
-                templateDataFieldAdditionalPart: '-template'
-            });
+                templateDataFieldAdditionalPart: '-template',
+                copyValuesInsteadOtherPlaceholders: settings.copyValuesInsteadOtherPlaceholders, 
+                checkNameFragmentIsPlaceholderCallback: 
+                        settings.checkNameFragmentIsPlaceholderCallback
+                }
+            );
                 
             $clonedTemplate.find('input').val('');
             
             $container.append($clonedTemplate);
             settings.afterCloneCallback($clonedTemplate); // выполняем необходимые действия типа привязки событий
             $clonedTemplate.show('slow');
-            
-            //
-//            console.log('cloned = ', $clonedTemplate);
-//            
-//            console.log('look for: ', controlElementSelector, $controlElement);
-//            console.log('founded control = ', $clonedTemplate.find(controlElementSelector));
-            
+
             var $newContorlElement = $clonedTemplate.find(controlElementSelector);
             
             $newContorlElement.parentInParentContainerDublicator({
@@ -426,9 +406,7 @@
 
             return false;
         }
-        
     } 
-    
 
     /**
      * Проведёт замены значений атрибутов ВСЕХ ПОТОМКОВ данного элемента,
@@ -444,6 +422,8 @@
             templateDataFieldAdditionalPart: '-template'  // -- прибавка к имени (для определения data-атрибута)
                                                             // например если замена проходит для атрибута for, 
                                                             // то шаблон будет искаться в атрибуте data-for-template
+            copyValuesInsteadOtherPlaceholders            // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Делать ли замену плейсхолдеров, которые остались в шаблоне после подстановки вместо searchRegexp (основная)
+            checkNameFragmentIsPlaceholderCallback        // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером 
         }
      * @returns {type.fn.replaceInChildrenAttrsUsingTemplateNameDataAttr.$parent}
      */
@@ -455,7 +435,11 @@
             searchRegexp:     /%fileds_group_number_lavel2%/g,
             newValue:         '888',
             attributeNames:   ['name', 'for'],
-            templateDataFieldAdditionalPart: '-template'
+            templateDataFieldAdditionalPart: '-template',
+            copyValuesInsteadOtherPlaceholders: false, 
+            checkNameFragmentIsPlaceholderCallback: function(substr) {
+                return false;
+            }
             
         }, options);
         
@@ -487,6 +471,8 @@
             templateDataFieldAdditionalPart: '-template'  // -- прибавка к имени (для определения data-атрибута)
                                                             // например если замена проходит для атрибута for, 
                                                             // то шаблон будет искаться в атрибуте data-for-template
+            copyValuesInsteadOtherPlaceholders            // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Делать ли замену плейсхолдеров, которые остались в шаблоне после подстановки вместо searchRegexp (основная)
+            checkNameFragmentIsPlaceholderCallback        // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером                                        
         }
      * @returns {type.fn.replaceInChildrenAttrsUsingTemplateNameDataAttr.$parent}
      */
@@ -499,28 +485,47 @@
             newValue:         '888',
             attributeNames:   ['name', 'for'],
             templateDataFieldAdditionalPart: '-template',
-            copyValuesInsteadOtherPlaceholders: true, // ЗАМЕНИТЬ на FALSE
-            checkNameFragmentIsPlaceholderCallback: function(nameSection) {return false}
+            copyValuesInsteadOtherPlaceholders: false, 
+            checkNameFragmentIsPlaceholderCallback: function(nameSection) {
+                return false;
+            }
             
         }, options);
         
         var templateValue = '';
-        var templateValueAfterMainReplacement = '';
+        var templateValueAfterReplacement = '';
         settings.attributeNames.forEach(function(attrName, index, array) {
             templateValue = $this.attr('data-' + attrName + settings.templateDataFieldAdditionalPart);
             if (!jswl.isEmpty(templateValue)) {
-                templateValueAfterMainReplacement = templateValue.replace(
-                        settings.searchRegexp, 
-                        settings.newValue
+                templateValueAfterReplacement = templateValue.replace(
+                    settings.searchRegexp, 
+                    settings.newValue
                 );
-                if ((attrName == 'name')
+
+                if ((attrName === 'name') // если работаем с атрибутом name
                         && settings.copyValuesInsteadOtherPlaceholders) {
-                    var template
-                    
+                    var attrValue  = $this.attr(attrName);
+                    var templateNameFragments = jswl.getSquareBracketedFragments(templateValueAfterReplacement);
+
+                    templateNameFragments.forEach(function(templateFragment, index, array) {
+                        
+                        if (settings.checkNameFragmentIsPlaceholderCallback(templateFragment)
+                                && !jswl.isEmpty(attrValue)) { // если это заглушка (плейсхолдер) и есть из чего копировать       
+                            var initialFragment = jswl.getSquareBracketedFragmentByNumber(attrValue, index);
+                            if (!jswl.isEmpty(initialFragment)) { // если и в исходном (заменяемом значении) этот фрагмент не пуст
+                                
+                                templateValueAfterReplacement = templateValueAfterReplacement.replace(
+                                        templateFragment,
+                                        initialFragment
+                                );
+                            }
+                        }
+                    });
                 }
+                
                 $this.attr(
                     attrName, 
-                    templateValueAfterMainReplacement
+                    templateValueAfterReplacement
                 );
             }   
         });
@@ -597,15 +602,12 @@
     $.fn.__deleteParentByLevelForUnique = function(parentLevel) {
        
         var $controlElement = $(this);
-       //console.log('init delete for:', $controlElement.attr('id'), $controlElement);
         this.click(onClick);
 
         function onClick(){ 
             
             var $controlElement = $(this);
             var $parent =  $controlElement.nthParent(parentLevel);
-            
-            //console.log("удаляем родителя", parentLevel, $parent);
             
              $parent.removeSmoothly();
 
@@ -637,11 +639,9 @@
         var $element = $(this);
         if ($element.isDataAttrEmpty(counterName)) {
             $element.data(counterName, (1).toString());
-           // console.log('Устанавливаем счетчиктеперь', $element.data(counterName));
         } else {
             var oldValue = $element.data(counterName);
             $element.data(counterName, (Number(oldValue) + 1).toString());
-           // console.log('Накручиваем счетчик, теперь ', $element.data(counterName));
         }
     }
     
@@ -658,11 +658,7 @@
             throw new Error("Counter is with name ", counterName,
                 "undefined for : ", $element, " // use $.incDataAttrCounter() at least onse ");
         }
-        
-        
-        console.log('counter name:', counterName);
-        console.log('counter value:', $element.data(counterName), $element);
-        
+
         return $element.data(counterName);
     }
     
@@ -676,11 +672,7 @@
     $.fn.isDataAttrEmpty = function(attrName) {
         
         var dataAttr = $(this).data(attrName);
-//        console.log('проверяем на пустоту', attrName, dataAttr, 'тип', typeof(dataAttr));
-//        console.log('проверяем пусто ли ', (typeof(dataAttr) === 'undefined')
-//                || (dataAttr === false));
-        return ((typeof(dataAttr) === 'undefined')
-                || (dataAttr === false));
+        return (jswl.isEmpty(dataAttr));
     }
     
     
@@ -696,7 +688,6 @@
         var dataAttrName = $(this).attr(attrName);
         var result = ((typeof(dataAttrName) === 'undefined')
                 || (dataAttrName === false));
-        console.log('is empty^', result);
         return result;
     }
     
@@ -772,23 +763,16 @@
      * @returns {undefined}
      */
     $.fn.scrollToMe = function(scrollableElementSelector) {
-        var $this = $(this);
-        
+        var $this = $(this); 
         var $scrollableParent = 'none';
-        
-        console.log('scrollableElementSelector', scrollableElementSelector);
-        
+
         if (jswl.isEmpty(scrollableElementSelector)) {
-            console.log('empty-- take for browser');
-            
             $scrollableParent = $.browser.mozilla ? $('html') : $('body');
             // $scrollableParent = $this.scrollParent();
         } else if (scrollableElementSelector === '&get-scroll-parent&') {
-            console.log('auto');
-            
             $scrollableParent = $this.scrollParent();
         } else {
-            console.log('like user set');
+
             $scrollableParent = $(scrollableElementSelector);
         }
         
@@ -804,9 +788,7 @@
      */
     $.fn.scrollMeTo = function($element) {
         var $this = $(this);
-        
-        console.log('прокрутка блока ',  $this),
-        console.log(' к блоку ', $element);
+
         $this.animate({
              scrollTop: $element.offset().top
         }, 600);
@@ -821,7 +803,6 @@
     $.fn.removeSelect2Span = function () {
         var $this = $(this); // your select
         var $oldSpan = $this.next('span.select2-container');
-        // console.log('$oldSpan:', $oldSpan);
         $oldSpan.remove();
         
         return $this;
@@ -1045,6 +1026,19 @@
                 nameFrags[index] = element.replace(/\]/g, ""); 
             });
             return nameFrags;
+        }
+        
+        /**
+         * Проверит, что подстрока входит в данную строку
+         * (содержится в строке) 
+         * 
+         * @param {string} str    строка
+         * @param {string} substr  подстрока
+         * @returns {Boolean}
+         */
+        this.checkForSubstring = function(str, substr)
+        {
+            return (str.indexOf(substr) !== -1);
         }
     }
 }( jQuery ));
