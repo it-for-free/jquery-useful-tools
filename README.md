@@ -19,10 +19,10 @@
 <script src="jquery-useful-tools.js"></script> 
 ```
 
-### Плагины JUTs ###
+## Плагины JUTs 
 
 
-#### Плагин `$.fromFiledsGroupAdderFromHiddenTemplate()` ####
+### Плагин `$.fromFiledsGroupAdderFromHiddenTemplate()` 
 
 `$.fromFiledsGroupAdderFromHiddenTemplate()` -- призван копировать группу полей (скрытый блок), 
 которые лежит в другом скрытом блоке -- его контейнере.
@@ -80,6 +80,13 @@ $( "document" ).ready(function(){
 ДОЛЖНЫ БЫТЬ пронумерованы НЕПРЕРЫВНО
 
 
+### Плагины getAttrFragment и getNameFragment 
+
+Позволяют извлекать фрагмент значения атрибута вида:
+```
+people[123][groups][34][2]
+```
+ по номеру (парсят квадратные скобки). Полезны напр. для работы с атрибутом name сложных форм.
 
 
 ##  Старая документация (будет удалена) ##
