@@ -1,12 +1,12 @@
 /**
  * Набор полезных JQuery-плагинов,
  * в том числе посвящённых быстрой работе со сложными формами (подойдёт для 
- * пототипирования приложения, главная цель -- совместимость с любой версткой)
+ * пототипирования приложения, главная цель -- совместимость с любой (условно любой) версткой)
  * 
+ * @todo Может можно отказаться от глобальных массивов регистраций событий 
+ * и просто использовать проверку не привязано ли уже событие (так или иначе)
  * depends: jqueryui ()
  * 
- * @param {type} $
- * @returns {undefined}
  */
 (function($) {
     
@@ -290,19 +290,33 @@
      * 
      * Является обёрткой для $('').__relativeParentInParentContainerDublicatorForUnique()
      * 
-     * @param  {String} thisSelector            селектор элемента на который вещается плагин (управляющего, того,
-     *                                          по которому пользователь будет длеать клик при дублировании блока)
-     *                                          
-     * @param {integer}  containerParentLevel                уровень родительского контейнера (в который добавляем) 
-     * @param {integer}  parentLevel                         уровень родителя (папа = 0) (копию которого добавляем в родительский блок с уровнем containerParentLevel)   
-     * @param {function} initParentElementsHandlersFunction  эта функция будет вызвна для копируемого шаблона, чтобы включить на нём необходимые обработчики   
-     * @param {RegExp}   namesInParentResearchRegexp           регулярное выражение для замены в аттрибутах name скопированного контейнера.
+     * 
+     * {
+        "thisSelector": '',            селектор элемента на который вещается плагин (управляющего, того,
+                                           по которому пользователь будет длеать клик при дублировании блока)
+        "containerParentLevel": 1,      уровень родительского контейнера 
+                                                (в который добавляем)
+        "parentLevel": 0,               уровень родителя (папа = 0) (копию 
+                                                которого добавляем в родительский блок с уровнем containerParentLevel)   
+        "replaceRegexp": /%plholder%/g, регулярное выражение для замены 
+                                           в аттрибутах подстроки на порядокый номер данного элемента в родителе
+        "afterCloneCallback": function($addedGroup) {}    НЕ ОБЯЗАТЕЛЕН: эта функция будет 
+                                              вызвна для копируемого шаблона (вы можете провести дополнительные инициллизации)
+        }
+     * @param {object}   options          настройки.
      * @returns {window.$|jQuery|$|_$|@pro;window@pro;$|Window.$}
      */
-    $.fn.parentInParentContainerDublicator = function(thisSelector, containerParentLevel,
-        parentLevel, initParentElementsHandlersFunction, namesInParentResearchRegexp) {
-       
-        
+    $.fn.parentInParentContainerDublicator = function(options) {
+            
+        var $this = $(this);
+        var settings = $.extend({
+            "thisSelector": '', 
+            "containerParentLevel": 1,   
+            "parentLevel": 0, 
+            "replaceRegexp": /%fields_group_number_2%/g,
+            "afterCloneCallback": function($addedGroup) {}   
+        }, options);
+
         $(this).uniqueId();
         var elementId = '';
         return this.each(function() {
@@ -312,12 +326,7 @@
                 'parentInParentContainerDublicator')) {
                 
                 $('#' + elementId).__relativeParentInParentContainerDublicatorForUnique(
-                    thisSelector, // инициллизируем плагин для конкретного уникального элемента
-                    containerParentLevel, 
-                    parentLevel, 
-                    initParentElementsHandlersFunction, 
-                    namesInParentResearchRegexp);
-
+                    settings);
             }
         });
     }
@@ -329,28 +338,39 @@
      * в родительский контейнер указаного уровня
      * (в реализации использованы относительные селекторы)
      * 
-     * 
-     * @param  {String} thisSelector            селектор элемента на который вещается плагин (управляющего, того,
-     *                                          по которому пользователь будет длеать клик при дублировании блока)
-     *   
-     * @param {integer}  containerParentLevel    уровень родительского контейнера (в который добавляем) 
-     * @param {integer} parentLevel             уровень родителя (папа = 0) (копию которого добавляем в родительский блок с уровнем containerParentLevel)   
-     * @param {function} initParentElementsHandlersFunction  эта функция будет вызвна для копируемого шаблона, чтобы включить на нём необходимые обработчики   
-     * @param {RegExp}   namesInParentResearchRegexp           регулярное выражение для замены в аттрибутах name скопированного контейнера.  например /%fileds_group_number_2%/g
+     * {
+        "thisSelector": '',            селектор элемента на который вещается плагин (управляющего, того,
+                                           по которому пользователь будет длеать клик при дублировании блока)
+        "containerParentLevel": 1,      уровень родительского контейнера 
+                                                (в который добавляем)
+        "parentLevel": 0,               уровень родителя (папа = 0) (копию 
+                                                которого добавляем в родительский блок с уровнем containerParentLevel)   
+        "replaceRegexp": /%plholder%/g, регулярное выражение для замены 
+                                           в аттрибутах подстроки на порядокый номер данного элемента в родителе
+        "afterCloneCallback": function($addedGroup) {}   НЕ ОБЯЗАТЕЛЕН: эта функция будет 
+                                              вызвна для копируемого шаблона (вы можете провести дополнительные инициллизации)
+        }
+     * @param {object}   options          настройки.
      * @returns {window.$|jQuery|$|_$|@pro;window@pro;$|Window.$}
      */
-    $.fn.__relativeParentInParentContainerDublicatorForUnique = function(thisSelector, containerParentLevel, 
-        parentLevel, initParentElementsHandlersFunction, namesInParentResearchRegexp) {
+    $.fn.__relativeParentInParentContainerDublicatorForUnique = function(options) {
         
+        var settings = $.extend({
+            "thisSelector": '', 
+            "containerParentLevel": 1,   
+            "parentLevel": 0, 
+            "replaceRegexp": /%fields_group_number_2%/g,
+            "afterCloneCallback": function($addedGroup) {}   
+        }, options);
         
-        var controlElementSelector = thisSelector; 
+        var controlElementSelector = settings.thisSelector; 
 
         
         var $controlElement = $(this);
-        var $container = $controlElement.nthParent(containerParentLevel);
-        var $template =  $controlElement.nthParent(parentLevel);
+        var $container = $controlElement.nthParent(settings.containerParentLevel);
+        var $template =  $controlElement.nthParent(settings.parentLevel);
             
-        $container.incDataAttrCounter(thisSelector); // фактически докрутит счетчик до нужного значения, по числу элементов в контейнере ещё до лкика на добавление очередного 
+        $container.incDataAttrCounter(settings.thisSelector); // фактически докрутит счетчик до нужного значения, по числу элементов в контейнере ещё до лкика на добавление очередного 
         
        // console.log('Инициаллизация плагина: ', $controlElement.attr('id'), $controlElement);
         this.click(onClick);
@@ -376,8 +396,8 @@
             $clonedTemplate.find('*').removeAttr('id'); // удаляем id всех элементах скопированного шаблона, чтобы блок был "нейтральным"
     
             $clonedTemplate.replaceInChildrenAttrsUsingTemplatesFromDataFileds({
-                searchRegexp:     namesInParentResearchRegexp,
-                newValue:         $container.getDataAttrCounter(thisSelector),
+                searchRegexp:     settings.replaceRegexp,
+                newValue:         $container.getDataAttrCounter(settings.thisSelector),
                 attributeNames:   ['name', 'for', 'class'],
                 templateDataFieldAdditionalPart: '-template'
             });
@@ -385,7 +405,7 @@
             $clonedTemplate.find('input').val('');
             
             $container.append($clonedTemplate);
-            initParentElementsHandlersFunction($clonedTemplate); // выполняем необходимые действия типа привязки событий
+            settings.afterCloneCallback($clonedTemplate); // выполняем необходимые действия типа привязки событий
             $clonedTemplate.show('slow');
             
             //
@@ -395,8 +415,14 @@
 //            console.log('founded control = ', $clonedTemplate.find(controlElementSelector));
             
             var $newContorlElement = $clonedTemplate.find(controlElementSelector);
-            $newContorlElement.parentInParentContainerDublicator(controlElementSelector, containerParentLevel, 
-                parentLevel, initParentElementsHandlersFunction, namesInParentResearchRegexp);
+            
+            $newContorlElement.parentInParentContainerDublicator({
+                "thisSelector": controlElementSelector, 
+                "containerParentLevel": settings.containerParentLevel,   
+                "parentLevel": settings.parentLevel, 
+                "replaceRegexp": settings.replaceRegexp,
+                "afterCloneCallback": settings.afterCloneCallback   
+            });
 
             return false;
         }
@@ -472,20 +498,29 @@
             searchRegexp:     /%fileds_group_number_lavel2%/g,
             newValue:         '888',
             attributeNames:   ['name', 'for'],
-            templateDataFieldAdditionalPart: '-template'
+            templateDataFieldAdditionalPart: '-template',
+            copyValuesInsteadOtherPlaceholders: true, // ЗАМЕНИТЬ на FALSE
+            checkNameFragmentIsPlaceholderCallback: function(nameSection) {return false}
             
         }, options);
         
         var templateValue = '';
+        var templateValueAfterMainReplacement = '';
         settings.attributeNames.forEach(function(attrName, index, array) {
             templateValue = $this.attr('data-' + attrName + settings.templateDataFieldAdditionalPart);
             if (!jswl.isEmpty(templateValue)) {
-                $this.attr(
-                    attrName, 
-                    templateValue.replace(
+                templateValueAfterMainReplacement = templateValue.replace(
                         settings.searchRegexp, 
                         settings.newValue
-                    )
+                );
+                if ((attrName == 'name')
+                        && settings.copyValuesInsteadOtherPlaceholders) {
+                    var template
+                    
+                }
+                $this.attr(
+                    attrName, 
+                    templateValueAfterMainReplacement
                 );
             }   
         });
@@ -879,8 +914,46 @@
     }
     
     
+    /**
+     * В случае если значение атрибута разделено квадратными скобками
+     * (напр. для name сложной формы)
+     * получит его фрагмент, например для:
+     * people[123][groups][34][2]
+     * -- для fragmentNumber: 3 вернёт 34
+     * 
+     * @param {object} options Опции плагина
+     * "attributeName": 'name', 
+       "fragmentNumber": 0,
+     * @returns string
+     */
+    $.fn.getAttrFragment = function(options) {
+        
+        var $this = $(this);
+        var settings = $.extend({
+            "attributeName": 'name',
+            "fragmentNumber": 0
+        }, options);
+ 
+        var str = $this.attr(settings.attributeName);
+
+        return jswl.getSquareBracketedFragmentByNumber(str, settings.fragmentNumber);
+    }
     
-    
+    /**
+     * Получит значение секции атрибута name (имени) по номеру секции
+     * Обёртка над $.fn.getAttrFragment для атрибута  name данного элемент
+     * 
+     * ((jquery js get name section subsection string by number))
+     * 
+     * @param   {int} fragmentNumber
+     * @returns {string}
+     */
+    $.fn.getNameFragment = function(fragmentNumber) {
+        var $this = $(this);
+        return $this.getAttrFragment({"attributeName": 'name',
+            "fragmentNumber": fragmentNumber});
+    }
+
     var jswl = new JSWrapperLib();
     
     /**
@@ -936,6 +1009,42 @@
         this.isEmpty = function(value) {
             return (typeof value === "undefined" || value === null || value ===  "");
         }
-    
+        
+        /**
+         * Получит фрагмент строки фрагмент, если её части разделены квадратными скобками:
+         * people[123][groups][34][2]
+         * -- для номера 3 вернёт 34
+         * 
+         * @param {string} str  строка с фрагментами. окружеными квадратными скобками
+         * @param {int} number  номер фрагмента (начиная с нуля)
+         * @returns {string}
+         */
+        this.getSquareBracketedFragmentByNumber = function(str, number) {
+            
+            var nameFrags = self.getSquareBracketedFragments(str);
+            return nameFrags[number];
+        }
+        
+        
+        /**
+         * Получит фрагментs строки фрагмент, если её части 
+         * разделены квадратными скобками в виде массива,
+         *  например дпя:
+         * people[123][groups][34][2]
+         * вернёт массив элементов (строк):
+         * [people, 123, groups, 34, 2]
+         * -- по факту разбиение идёт по открывающей скобке
+         * 
+         * @param {string} str  строка с фрагментами. окружеными квадратными скобками
+         * @returns {array} массив строк
+         */
+        this.getSquareBracketedFragments = function(str) {
+            
+            var nameFrags = str.split('['); // разбиваем по открывающей скобке
+            nameFrags.forEach(function(element, index, nameFrags) {
+                nameFrags[index] = element.replace(/\]/g, ""); 
+            });
+            return nameFrags;
+        }
     }
 }( jQuery ));
