@@ -181,7 +181,6 @@
         */
        this.removeFiledsGroup =  function ($groupElement) {
            $groupElement.stop().animate({ // анимация средствами JQuery
-
                    height: "0px", // высоту к нулю
                    width: "0px", // высоту к нулю
                    opacity: 0, // прозрачность к нулю
@@ -200,11 +199,7 @@
 
            var $newFiledsGroup = $($filedsGroupTemplateContainer.html()
                    .replace(replaceGroupNumerRegexp, researchIndex));
-
-           $newFiledsGroup.find('.outtaHere').removeClass('outtaHere'); // УБРАТЬ ИЗ ЛИБЫ
-           $newFiledsGroup.find('div.customSelect').remove(); // УБРАТЬ ИЗ ЛИБЫ
-
-           $newFiledsGroup.find('*').removeAttr('id'); // все потоми должны быть неуникальными
+           $newFiledsGroup.find('*').removeAttr('id'); // все потомки должны быть неуникальными
 
            $newFiledsGroup.appendTo($mainFiedsGroupsContainer).show('slow');
 
