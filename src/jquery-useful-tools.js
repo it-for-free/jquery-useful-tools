@@ -245,7 +245,10 @@
         "afterCloneCallback": function($addedGroup) {}    НЕ ОБЯЗАТЕЛЕН: эта функция будет 
                                               вызвна для копируемого шаблона (вы можете провести дополнительные инициллизации)
         copyValuesInsteadOtherPlaceholders      // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Делать ли замену плейсхолдеров, которые остались в шаблоне значения атрибута после подстановки вместо replaceRegexp (основная)
-        checkNameFragmentIsPlaceholderCallback  // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером 
+        checkNameFragmentIsPlaceholderCallback:: function(attrSubstr) {   // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером 
+                return jswl.checkForSubstring(attrSubstr, '%');
+            },
+        renumerateCallback : function($container) {}                     // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек дял нумерования элементов, на вход получает объект контейнера, в котором содержатся плагином дублируемые блоки
         }
      * @param {object}   options          настройки.
      * @returns {window.$|jQuery|$|_$|@pro;window@pro;$|Window.$}
@@ -261,7 +264,8 @@
              copyValuesInsteadOtherPlaceholders: false, 
             checkNameFragmentIsPlaceholderCallback: function(attrSubstr) {
                 return jswl.checkForSubstring(attrSubstr, '%');
-            }   
+            },
+            renumerateCallback: function($container) {} 
         }, options);
 
         $(this).uniqueId();
@@ -294,10 +298,11 @@
                                                 которого добавляем в родительский блок с уровнем containerParentLevel)   
         "replaceRegexp": /%plholder%/g, регулярное выражение для замены 
                                            в аттрибутах подстроки на порядокый номер данного элемента в родителе
-        "afterCloneCallback": function($addedGroup) {}   НЕ ОБЯЗАТЕЛЕН: эта функция будет 
+        "afterCloneCallback": function($addedGroup) {}  // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР эта функция будет 
                                               вызвна для копируемого шаблона (вы можете провести дополнительные инициллизации)
         copyValuesInsteadOtherPlaceholders      // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Делать ли замену плейсхолдеров, которые остались в шаблоне значения атрибута после подстановки вместо replaceRegexp (основная)
         checkNameFragmentIsPlaceholderCallback  // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером 
+        renumerateCallback : function($container) {}  // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек дял нумерования элементов, на вход получает объект контейнера, в котором содержатся плагином дублируемые блоки
         }
      * @param {object}   options          настройки.
      * @returns {window.$|jQuery|$|_$|@pro;window@pro;$|Window.$}
@@ -313,8 +318,9 @@
             copyValuesInsteadOtherPlaceholders: false, 
             checkNameFragmentIsPlaceholderCallback: function(substr) {
                 return false;
-            }
-        }, options);
+            },
+            renumerateCallback: function($container) {} 
+                }, options);
         
         var controlElementSelector = settings.thisSelector; 
 
@@ -324,7 +330,7 @@
         var $template =  $controlElement.nthParent(settings.parentLevel);
             
         $container.incDataAttrCounter(settings.thisSelector); // фактически докрутит счетчик до нужного значения, по числу элементов в контейнере ещё до лкика на добавление очередного 
-
+        // settings.renumerateCallback($container); // перенумеровываем элементы
         this.click(onClick);
 
         function onClick(){ 
@@ -349,7 +355,9 @@
             
             $container.append($clonedTemplate);
             settings.afterCloneCallback($clonedTemplate); // выполняем необходимые действия типа привязки событий
+            settings.renumerateCallback($container); // перенумеровываем элементы
             $clonedTemplate.show('slow');
+            
 
             var $newContorlElement = $clonedTemplate.find(controlElementSelector);
             
@@ -358,7 +366,8 @@
                 "containerParentLevel": settings.containerParentLevel,   
                 "parentLevel": settings.parentLevel, 
                 "replaceRegexp": settings.replaceRegexp,
-                "afterCloneCallback": settings.afterCloneCallback   
+                "afterCloneCallback": settings.afterCloneCallback,
+                renumerateCallback: settings.renumerateCallback
             });
 
             return false;
@@ -516,10 +525,21 @@
      * Плавно скрываем и удаляем родительский элемент при клике по данному/
      * Является обёрткой для __deleteParentByLevelForUnique()
      * 
-     * @param {integer} parentLevel  уровень родителя
+     * @param {options} options  настройки:
+     * 
+     * parentLevel:     0,          уровень родителя относительно элеента, на который вещается плагин
+       parentContainerLevel:   1,   // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР уровень котейнера родителя (используются в частности для перенумерации элементов после удаления)
+       renumerateCallback: function($container) {} // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером                                        
+    
      * @returns {block-dublicatorL#10.$.fn@call;each|Boolean}
      */    
-    $.fn.parentCloser = function(parentLevel) {
+    $.fn.parentCloser = function(options) {
+
+        var settings = $.extend({
+            parentLevel:     0,
+            parentContainerLevel:   1,
+            renumerateCallback: function($container) {} 
+            }, options);
 
         
         var elementId = '';
@@ -528,7 +548,7 @@
             elementId = $(this).attr('id');
             
             if (!checkOrAndAddToAlreadyInitIds(elementId, 'parentCloser')) {
-                $('#' + elementId).__deleteParentByLevelForUnique(parentLevel);
+                $('#' + elementId).__deleteParentByLevelForUnique(settings);
             }
         });
     }
@@ -549,22 +569,35 @@
      * @see НЕ вызывать напрямую!
      * Палавно скрываем и удаляем родительский элемент при клике по данному
      * 
+     * @param {options} options  настройки:
      * 
-     * @param {type} parentLevel
+     * parentLevel:     0,          уровень родителя относительно элеента, на который вещается плагин
+       parentContainerLevel:   1,   // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР уровень котейнера родителя (используются в частности для перенумерации элементов после удаления)
+       renumerateCallback: function($container) {} // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером                                        
      * @returns {undefined}
      */      
-    $.fn.__deleteParentByLevelForUnique = function(parentLevel) {
+    $.fn.__deleteParentByLevelForUnique = function(options) {
        
+        var settings = $.extend({
+            parentLevel:     0,
+            parentContainerLevel:   1,
+            renumerateCallback: function($container) {} 
+            }, options);
+            
         var $controlElement = $(this);
         this.click(onClick);
 
         function onClick(){ 
             
             var $controlElement = $(this);
-            var $parent =  $controlElement.nthParent(parentLevel);
+            var $parent =  $controlElement.nthParent(settings.parentLevel);
+            var $container = $controlElement.nthParent(settings.parentContainerLevel);
             
-             $parent.removeSmoothly();
-
+            $parent.removeSmoothly({
+                afterRemoveFinishedCallback: settings.renumerateCallback,
+                afterRemoveFinishedParams: $container
+            });
+ 
             return false;
         }
     }
@@ -672,15 +705,32 @@
     
     
     /**
-    * Плавно скроет, а затем удалит блок
-    */
-    $.fn.removeSmoothly = function() {
+     * Плавно скроет, а затем удалит блок
+     * ВНИМАНИЕ: работает асинхронно.
+     * 
+     * @param {object} options настройки
+     *   afterRemoveFinishedCallback: function() {} // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР для вызова после того
+     *                            как элемент будет убран из DOM 
+     *                            (полезно тз-зп асинхронности плагина)
+     *   afterRemoveFinishedParams:  {}  // НЕОБЯЗАТЕЛЬНЫЙ ПРАМЕТР параметры для колбека
+     * @returns {undefined}
+     */
+    $.fn.removeSmoothly = function(options) {
+       
+        var settings = $.extend({
+            afterRemoveFinishedCallback: function() {},
+            afterRemoveFinishedParams: {}, 
+        }, options);
+            
         this.stop().animate({
                 height: "0px", // высоту к нулю
                 width: "0px", // высоту к нулю
                 opacity: 0, // прозрачность к нулю
             }, 600, function() {
                 $(this).remove(); // удаляем из DOM (если требуется, если же нет, то "закомментируйте" эту строку)
+                settings.afterRemoveFinishedCallback(
+                    settings.afterRemoveFinishedParams
+                ); // вызываем колбек
             }
         );
     };
