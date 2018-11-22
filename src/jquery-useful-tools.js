@@ -222,45 +222,7 @@
     
        
  
-    /**
-     *  Функции (плагины), данного набора,
-     *  привязывающие обработчики на элементы с уникальным id,
-     *  могут дописывать в данный объект
-     *  поля, в которых хранить списки 
-     *   id для, которых уже применён данный плагин (необходим чтобы 
-     *  обработчики одного и того же плагина не вешались
-     *  на один и тот же элемент дважды)
-     * 
-     * @type Object
-     */
-    var __alreadyInitIdsStorage = {};
-    
-    
-    /**
-     * Проверит наличие элемента в списке __alreadyInitIdsStorage
-     *  и если его там не было, то добавит.
-     *  Используйте эту функцию, прежде чем привязывать событие в плагинах
-     * 
-     * @param {String} elementId        id элемента, который проверяется на актуальность инициллизации данном плагином
-     * @param {String} substorageName   имя хранилища для данной плагина (подразумевается, что один плагин использует хотя бы одно уникальное имя для себя)
-     * @returns {Boolean} был ли элемент отмечен как инициллизированный ранее (до вызова этой функции), если не был -- то можете вещать обработчики в вашем плагине
-     */
-    function checkOrAndAddToAlreadyInitIds(elementId, substorageName)
-    {
-        /* Инициаллизируем хранилище, на случае если его ещё не было*/
-        if (jswl.isNullOrUndefined(__alreadyInitIdsStorage[substorageName])) {
-            __alreadyInitIdsStorage[substorageName] = [];
-        }
-        
-        var result = true;
-        if (!jswl.inArray(elementId, __alreadyInitIdsStorage[substorageName])) {
-            __alreadyInitIdsStorage[substorageName].push(elementId); // запоминаем значение
-            result = false;
-        } 
 
-
-        return result;
-    }
     
 
 
@@ -532,10 +494,7 @@
         
         return $this;
     }
-    
-    
-    
-    
+
     /**
      * Проведёт замену подстроки по указанному регулярному выражению
      * в списке указанных атрибутов
@@ -934,111 +893,152 @@
         return $this.getAttrFragment({"attributeName": 'name',
             "fragmentNumber": fragmentNumber});
     }
-
-    var jswl = new JSWrapperLib();
+    
     
     /**
-     * Набор обёрток, с более удобным синтаксисо
-     * (чистый JavaScript)
+     *  Функции (плагины), данного набора,
+     *  привязывающие обработчики на элементы с уникальным id,
+     *  могут дописывать в данный объект
+     *  поля, в которых хранить списки 
+     *   id для, которых уже применён данный плагин (необходим чтобы 
+     *  обработчики одного и того же плагина не вешались
+     *  на один и тот же элемент дважды)
      * 
-     * Если объявить точку входа как:
-     *   var jswl = new JSWrapperLib();
-     * 
-     * То функции в вашем скрипте можно вызывать как:
-     * 
-     * jswl.имяфункции()
-     * 
-     * @returns {undefined}
+     * @type Object
      */
-    function JSWrapperLib() {
-        
-        
-        var self = this;
-        
-        /**
-         * Проверит является ли 
-         * значение null или undefined
-         * 
-         * @param {mixed} value  проверяемое значение
-         * @returns {boolean}
-         */
-        this.isNullOrUndefined = function(value)
-        {
-            return (typeof value === "undefined" 
-                    || value === null);
+    var __alreadyInitIdsStorage = {};
+    
+    
+    /**
+     * Проверит наличие элемента в списке __alreadyInitIdsStorage
+     *  и если его там не было, то добавит.
+     *  Используйте эту функцию, прежде чем привязывать событие в плагинах
+     * 
+     * @param {String} elementId        id элемента, который проверяется на актуальность инициллизации данном плагином
+     * @param {String} substorageName   имя хранилища для данной плагина (подразумевается, что один плагин использует хотя бы одно уникальное имя для себя)
+     * @returns {Boolean} был ли элемент отмечен как инициллизированный ранее (до вызова этой функции), если не был -- то можете вещать обработчики в вашем плагине
+     */
+    function checkOrAndAddToAlreadyInitIds(elementId, substorageName)
+    {
+        /* Инициаллизируем хранилище, на случае если его ещё не было*/
+        if (jswl.isNullOrUndefined(__alreadyInitIdsStorage[substorageName])) {
+            __alreadyInitIdsStorage[substorageName] = [];
         }
         
-        
-        /**
-         * Проверит содержится ли элемент в массиве
-         * 
-         * @param {mixed} value
-         * @param {array} array
-         * @returns {Boolean}
-         */
-        this.inArray = function(value, array)
-        {
-            return (!(array.indexOf(value) === -1));
-        }
-        
-        /**
-         * Проверка на пустоту
-         * 
-         * @param {mixed} value
-         * @returns {Boolean}  проверяемое значение
-         */
-        this.isEmpty = function(value) {
-            return (typeof value === "undefined" || value === null || value ===  "");
-        }
-        
-        /**
-         * Получит фрагмент строки фрагмент, если её части разделены квадратными скобками:
-         * people[123][groups][34][2]
-         * -- для номера 3 вернёт 34
-         * 
-         * @param {string} str  строка с фрагментами. окружеными квадратными скобками
-         * @param {int} number  номер фрагмента (начиная с нуля)
-         * @returns {string}
-         */
-        this.getSquareBracketedFragmentByNumber = function(str, number) {
-            
-            var nameFrags = self.getSquareBracketedFragments(str);
-            return nameFrags[number];
-        }
-        
-        
-        /**
-         * Получит фрагментs строки фрагмент, если её части 
-         * разделены квадратными скобками в виде массива,
-         *  например дпя:
-         * people[123][groups][34][2]
-         * вернёт массив элементов (строк):
-         * [people, 123, groups, 34, 2]
-         * -- по факту разбиение идёт по открывающей скобке
-         * 
-         * @param {string} str  строка с фрагментами. окружеными квадратными скобками
-         * @returns {array} массив строк
-         */
-        this.getSquareBracketedFragments = function(str) {
-            
-            var nameFrags = str.split('['); // разбиваем по открывающей скобке
-            nameFrags.forEach(function(element, index, nameFrags) {
-                nameFrags[index] = element.replace(/\]/g, ""); 
-            });
-            return nameFrags;
-        }
-        
-        /**
-         * Проверит, что подстрока входит в данную строку
-         * (содержится в строке) 
-         * 
-         * @param {string} str    строка
-         * @param {string} substr  подстрока
-         * @returns {Boolean}
-         */
-        this.checkForSubstring = function(str, substr)
-        {
-            return (str.indexOf(substr) !== -1);
-        }
+        var result = true;
+        if (!jswl.inArray(elementId, __alreadyInitIdsStorage[substorageName])) {
+            __alreadyInitIdsStorage[substorageName].push(elementId); // запоминаем значение
+            result = false;
+        } 
+
+        return result;
     }
+    
 }( jQuery ));
+
+var jswl = new JSWrapperLib();
+
+/**
+ * Набор обёрток, с более удобным синтаксисо
+ * (чистый JavaScript)
+ * 
+ * Если объявить точку входа как:
+ *   var jswl = new JSWrapperLib();
+ * 
+ * То функции в вашем скрипте можно вызывать как:
+ * 
+ * jswl.имяфункции()
+ * 
+ * @returns {undefined}
+ */
+function JSWrapperLib() {
+
+
+    var self = this;
+
+    /**
+     * Проверит является ли 
+     * значение null или undefined
+     * 
+     * @param {mixed} value  проверяемое значение
+     * @returns {boolean}
+     */
+    this.isNullOrUndefined = function(value)
+    {
+        return (typeof value === "undefined" 
+                || value === null);
+    }
+
+
+    /**
+     * Проверит содержится ли элемент в массиве
+     * 
+     * @param {mixed} value
+     * @param {array} array
+     * @returns {Boolean}
+     */
+    this.inArray = function(value, array)
+    {
+        return (!(array.indexOf(value) === -1));
+    }
+
+    /**
+     * Проверка на пустоту
+     * 
+     * @param {mixed} value
+     * @returns {Boolean}  проверяемое значение
+     */
+    this.isEmpty = function(value) {
+        return (typeof value === "undefined" || value === null || value ===  "");
+    }
+
+    /**
+     * Получит фрагмент строки фрагмент, если её части разделены квадратными скобками:
+     * people[123][groups][34][2]
+     * -- для номера 3 вернёт 34
+     * 
+     * @param {string} str  строка с фрагментами. окружеными квадратными скобками
+     * @param {int} number  номер фрагмента (начиная с нуля)
+     * @returns {string}
+     */
+    this.getSquareBracketedFragmentByNumber = function(str, number) {
+
+        var nameFrags = self.getSquareBracketedFragments(str);
+        return nameFrags[number];
+    }
+
+
+    /**
+     * Получит фрагментs строки фрагмент, если её части 
+     * разделены квадратными скобками в виде массива,
+     *  например дпя:
+     * people[123][groups][34][2]
+     * вернёт массив элементов (строк):
+     * [people, 123, groups, 34, 2]
+     * -- по факту разбиение идёт по открывающей скобке
+     * 
+     * @param {string} str  строка с фрагментами. окружеными квадратными скобками
+     * @returns {array} массив строк
+     */
+    this.getSquareBracketedFragments = function(str) {
+
+        var nameFrags = str.split('['); // разбиваем по открывающей скобке
+        nameFrags.forEach(function(element, index, nameFrags) {
+            nameFrags[index] = element.replace(/\]/g, ""); 
+        });
+        return nameFrags;
+    }
+
+    /**
+     * Проверит, что подстрока входит в данную строку
+     * (содержится в строке) 
+     * 
+     * @param {string} str    строка
+     * @param {string} substr  подстрока
+     * @returns {Boolean}
+     */
+    this.checkForSubstring = function(str, substr)
+    {
+        return (str.indexOf(substr) !== -1);
+    }
+}
