@@ -244,6 +244,13 @@
                                            в аттрибутах подстроки на порядокый номер данного элемента в родителе
         "afterCloneCallback": function($addedGroup) {}    НЕ ОБЯЗАТЕЛЕН: эта функция будет 
                                               вызвна для копируемого шаблона (вы можете провести дополнительные инициллизации)
+        attributesToReplaceFromTemplate:   ['name', 'for', 'class'], // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Массив атрибутов 
+                                           каждого клонированного элемента (внутри склонированного блока),
+                                           в которых необходимо провести замену из шаблона, определяемого templateDataFieldAdditionalPart
+        templateDataFieldAdditionalPart: '-template' // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР прибавка к имени (для определения data-атрибута)
+                                            например если замена проходит для атрибута for, 
+                                                то шаблон будет искаться в атрибуте data-for-template
+
         copyValuesInsteadOtherPlaceholders      // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Делать ли замену плейсхолдеров, которые остались в шаблоне значения атрибута после подстановки вместо replaceRegexp (основная)
         checkNameFragmentIsPlaceholderCallback:: function(attrSubstr) {   // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером 
                 return jswl.checkForSubstring(attrSubstr, '%');
@@ -263,7 +270,10 @@
             "containerParentLevel": 1,   
             "parentLevel": 0, 
             "replaceRegexp": /%fields_group_number_2%/g,
-             copyValuesInsteadOtherPlaceholders: false, 
+            afterCloneCallback: function($addedGroup) {},
+            attributesToReplaceFromTemplate:  ['name', 'for', 'class'],
+            templateDataFieldAdditionalPart: '-template',
+            copyValuesInsteadOtherPlaceholders: false, 
             checkNameFragmentIsPlaceholderCallback: function(attrSubstr) {
                 return jswl.checkForSubstring(attrSubstr, '%');
             },
@@ -304,6 +314,13 @@
                                            в аттрибутах подстроки на порядокый номер данного элемента в родителе
         "afterCloneCallback": function($addedGroup) {}  // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР эта функция будет 
                                               вызвна для копируемого шаблона (вы можете провести дополнительные инициллизации)
+        attributesToReplaceFromTemplate:   ['name', 'for', 'class'], // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Массив атрибутов 
+                                           каждого клонированного элемента (внутри склонированного блока),
+                                           в которых необходимо провести замену из шаблона, определяемого templateDataFieldAdditionalPart
+        templateDataFieldAdditionalPart: '-template' // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР прибавка к имени (для определения data-атрибута)
+                                            например если замена проходит для атрибута for, 
+                                                то шаблон будет искаться в атрибуте data-for-template
+
         copyValuesInsteadOtherPlaceholders      // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Делать ли замену плейсхолдеров, которые остались в шаблоне значения атрибута после подстановки вместо replaceRegexp (основная)
         checkNameFragmentIsPlaceholderCallback  // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером 
         containerCallback : function($container) {}    // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для вызова на контейнере 
@@ -321,7 +338,9 @@
             "containerParentLevel": 1,   
             "parentLevel": 0, 
             "replaceRegexp": /%fields_group_number_2%/g,
-            "afterCloneCallback": function($addedGroup) {},
+            afterCloneCallback: function($addedGroup) {},
+            attributesToReplaceFromTemplate:  ['name', 'for', 'class'],
+            templateDataFieldAdditionalPart: '-template',
             copyValuesInsteadOtherPlaceholders: false, 
             checkNameFragmentIsPlaceholderCallback: function(substr) {
                 return false;
@@ -353,8 +372,8 @@
             $clonedTemplate.replaceInChildrenAttrsUsingTemplatesFromDataFileds({
                 searchRegexp:     settings.replaceRegexp,
                 newValue:         $container.getDataAttrCounter(settings.thisSelector),
-                attributeNames:   ['name', 'for', 'class'],
-                templateDataFieldAdditionalPart: '-template',
+                attributeNames:   settings.attributesToReplaceFromTemplate,
+                templateDataFieldAdditionalPart: settings.templateDataFieldAdditionalPart,
                 copyValuesInsteadOtherPlaceholders: settings.copyValuesInsteadOtherPlaceholders, 
                 checkNameFragmentIsPlaceholderCallback: 
                         settings.checkNameFragmentIsPlaceholderCallback
