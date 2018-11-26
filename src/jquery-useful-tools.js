@@ -248,7 +248,9 @@
         checkNameFragmentIsPlaceholderCallback:: function(attrSubstr) {   // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером 
                 return jswl.checkForSubstring(attrSubstr, '%');
             },
-        renumerateCallback : function($container) {}                     // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек дял нумерования элементов, на вход получает объект контейнера, в котором содержатся плагином дублируемые блоки
+        containerCallback : function($container) {}    // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для вызова на контейнере 
+                             -- элементе уровня containerParentLevel, в который происходит дублирование, 
+                            может быть использован, например, для перенумерации потомков, после очередного добавления
         }
      * @param {object}   options          настройки.
      * @returns {window.$|jQuery|$|_$|@pro;window@pro;$|Window.$}
@@ -265,7 +267,7 @@
             checkNameFragmentIsPlaceholderCallback: function(attrSubstr) {
                 return jswl.checkForSubstring(attrSubstr, '%');
             },
-            renumerateCallback: function($container) {} 
+            containerCallback: function($container) {} 
         }, options);
         
         
@@ -304,7 +306,9 @@
                                               вызвна для копируемого шаблона (вы можете провести дополнительные инициллизации)
         copyValuesInsteadOtherPlaceholders      // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Делать ли замену плейсхолдеров, которые остались в шаблоне значения атрибута после подстановки вместо replaceRegexp (основная)
         checkNameFragmentIsPlaceholderCallback  // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером 
-        renumerateCallback : function($container) {}  // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек дял нумерования элементов, на вход получает объект контейнера, в котором содержатся плагином дублируемые блоки
+        containerCallback : function($container) {}    // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для вызова на контейнере 
+                     -- элементе уровня containerParentLevel, в который происходит дублирование, 
+                    может быть использован, например, для перенумерации потомков, после очередного добавления
         }
      * @param {object}   options          настройки.
      * @returns {window.$|jQuery|$|_$|@pro;window@pro;$|Window.$}
@@ -322,7 +326,7 @@
             checkNameFragmentIsPlaceholderCallback: function(substr) {
                 return false;
             },
-            renumerateCallback: function($container) {} 
+            containerCallback: function($container) {} 
                 }, options);
         
         var controlElementSelector = settings.thisSelector; 
@@ -335,7 +339,7 @@
         var $template =  $controlElement.nthParent(settings.parentLevel);
             
         $container.incDataAttrCounter(settings.thisSelector); // фактически докрутит счетчик до нужного значения, по числу элементов в контейнере ещё до лкика на добавление очередного 
-        // settings.renumerateCallback($container); // перенумеровываем элементы
+       
         this.click(onClick);
 
         function onClick(){ 
@@ -361,7 +365,7 @@
             
             $container.append($clonedTemplate);
             settings.afterCloneCallback($clonedTemplate); // выполняем необходимые действия типа привязки событий
-            settings.renumerateCallback($container); // перенумеровываем элементы
+            settings.containerCallback($container); // перенумеровываем элементы
             $clonedTemplate.show('slow');
             
 
@@ -528,7 +532,9 @@
      * 
      * parentLevel:     0,          уровень родителя относительно элеента, на который вещается плагин
        parentContainerLevel:   1,   // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР уровень котейнера родителя (используются в частности для перенумерации элементов после удаления)
-       renumerateCallback: function($container) {} // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером                                        
+       containerCallback : function($container) {}    // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для вызова на контейнере 
+                      -- элементе уровня parentContainerLevel, в который происходит дублирование, 
+                     может быть использован, например, для перенумерации потомков, после очередного добавления
     
      * @returns {block-dublicatorL#10.$.fn@call;each|Boolean}
      */    
@@ -537,7 +543,7 @@
         var settings = $.extend({
             parentLevel:     0,
             parentContainerLevel:   1,
-            renumerateCallback: function($container) {} 
+            containerCallback: function($container) {} 
             }, options);
 
         
@@ -572,7 +578,9 @@
      * 
      * parentLevel:     0,          уровень родителя относительно элеента, на который вещается плагин
        parentContainerLevel:   1,   // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР уровень котейнера родителя (используются в частности для перенумерации элементов после удаления)
-       renumerateCallback: function($container) {} // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером                                        
+       containerCallback : function($container) {}    // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для вызова на контейнере 
+                      -- элементе уровня parentContainerLevel, в который происходит дублирование, 
+                     может быть использован, например, для перенумерации потомков, после очередного добавления
      * @returns {undefined}
      */      
     $.fn.__deleteParentByLevelForUnique = function(options) {
@@ -580,7 +588,7 @@
         var settings = $.extend({
             parentLevel:     0,
             parentContainerLevel:   1,
-            renumerateCallback: function($container) {} 
+            containerCallback: function($container) {} 
             }, options);
             
         var $controlElement = $(this);
@@ -593,7 +601,7 @@
             var $container = $controlElement.nthParent(settings.parentContainerLevel);
             
             $parent.removeSmoothly({
-                afterRemoveFinishedCallback: settings.renumerateCallback,
+                afterRemoveFinishedCallback: settings.containerCallback,
                 afterRemoveFinishedParams: $container
             });
  
