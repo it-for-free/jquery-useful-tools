@@ -267,6 +267,8 @@
             },
             renumerateCallback: function($container) {} 
         }, options);
+        
+        
 
         $(this).uniqueId();
         var elementId = '';
@@ -309,6 +311,7 @@
      */
     $.fn.__relativeParentInParentContainerDublicatorForUnique = function(options) {
         
+        var $this = $(this);
         var settings = $.extend({
             "thisSelector": '', 
             "containerParentLevel": 1,   
@@ -323,7 +326,9 @@
                 }, options);
         
         var controlElementSelector = settings.thisSelector; 
-
+        
+//        console.log('copy other:', settings.copyValuesInsteadOtherPlaceholders);
+//        console.log('bind on:', $this);
         
         var $controlElement = $(this);
         var $container = $controlElement.nthParent(settings.containerParentLevel);
@@ -340,6 +345,7 @@
             $clonedTemplate.hide();
             $clonedTemplate.find('*').removeAttr('id'); // удаляем id всех элементах скопированного шаблона, чтобы блок был "нейтральным"
     
+
             $clonedTemplate.replaceInChildrenAttrsUsingTemplatesFromDataFileds({
                 searchRegexp:     settings.replaceRegexp,
                 newValue:         $container.getDataAttrCounter(settings.thisSelector),
@@ -361,14 +367,7 @@
 
             var $newContorlElement = $clonedTemplate.find(controlElementSelector);
             
-            $newContorlElement.parentInParentContainerDublicator({
-                "thisSelector": controlElementSelector, 
-                "containerParentLevel": settings.containerParentLevel,   
-                "parentLevel": settings.parentLevel, 
-                "replaceRegexp": settings.replaceRegexp,
-                "afterCloneCallback": settings.afterCloneCallback,
-                renumerateCallback: settings.renumerateCallback
-            });
+            $newContorlElement.parentInParentContainerDublicator(settings);
 
             return false;
         }
