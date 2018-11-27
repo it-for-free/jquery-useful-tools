@@ -4,7 +4,8 @@
     "description": "nested form filed groups adder",
     
     "keywords": [
-        "js", "jquery", "nested form filed groups adder"
+        "js", "jquery", "html", "dom", "plugin",
+        "nested form filed inputs groups adder with attributes changing during clone"
     ],
     
     "homepage": "http://fkn.ktu10.com/?q=iff-itforfree",
