@@ -21,8 +21,8 @@
 сразу несколько более простых плагинов JUTs.
 Кратно об основных:
 1. `$.fromFiledsGroupAdderFromHiddenTemplate()`  копирует в родительский контейнер (на который и вешается событие) из скрытого шаблона
-2. `$.fn.parentInParentContainerDublicator()`  копирует родитеский элемент для данной кнопки (ссылки), 
-в родительский элемент ещё более высокого уровня.
+2. [`$.fn.parentInParentContainerDublicator()`  копирует родитеский элемент для данной кнопки (ссылки), 
+в родительский элемент ещё более высокого уровня.](docs/parentInParentContainerDublicator.md)
 
 ### Копирование из скрытого шаблона. Плагин `$.fromFiledsGroupAdderFromHiddenTemplate()` 
 
