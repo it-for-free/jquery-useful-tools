@@ -3,7 +3,48 @@
 
 Плагин конирует имеющийся элемент (напр. содержащий группу полей формы) в родительсеий элмент более высокого порядка ("контейнер").
 При этом для корректной замены атрибутов, придётся определить специальные data-шаблоны, например:
-////////
+
+```html
+<h3>Данные  консультациях</h3>
+<div class="row">
+    <div class="consult-item-item-container input-holder">
+        <div class="col-3-in-row">
+            <label>Ф.И.О. консультанта</label>
+            <input type="text" name="people[{$personSubkey}][consultation][0][fio]"
+                   data-name-template="people[{$personSubkey}][consultation][%fields_group_number_2%][fio]">
+        </div>
+        <a class="btn-input add-block" href="#"></a>
+        <a class="btn-input close-btn delete-block" href="#"></a>
+    </div>
+</div>
+```
+
+Пример вызова вместе с плагином удаления `parentCloser()`:
+
+```javascript
+function initConsultElements() {
+    $(".add-block").parentInParentContainerDublicator(
+        {
+        "thisSelector": ".add-block", 
+        "containerParentLevel": 1,   
+        "parentLevel": 0, 
+        "replaceRegexp": /%fields_group_number_2%/g,
+        "afterCloneCallback": initParentElementsHandlers    
+    });
+    
+    $(".delete-block").parentCloser({parentLevel: 0});
+    
+    function initParentElementsHandlers($block) {
+        $(".delete-block").parentCloser({parentLevel: 0});
+        $block.find(".file").remove();
+        $block.find(".file_input").val("");
+        $block.find(".consultation_key").remove();
+        FormComponent.reinitCustomSelectFull($block);
+        FormComponent.initDatapickers();
+    }
+}
+```
+
 Параметры (через двоеточие указаны значения по умолчанию):
 
 * `thisSelector: '', `           селектор элемента на который вещается плагин (управляющего, того,
@@ -30,32 +71,3 @@
 * `containerCallback` : function($container) {}`    // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для вызова на контейнере 
                              -- элементе уровня containerParentLevel, в который происходит дублирование, 
                             может быть использован, например, для перенумерации потомков, после очередного добавления
-
-
-Пример вызова вместе с плагином удаления `parentCloser()`:
-
-```javascript
-function initConsultElements() {
-    $(".add-block").parentInParentContainerDublicator(
-        {
-        "thisSelector": ".add-block", 
-        "containerParentLevel": 1,   
-        "parentLevel": 0, 
-        "replaceRegexp": /%fields_group_number_2%/g,
-        "afterCloneCallback": initParentElementsHandlers    
-    });
-    
-    $(".delete-consult").parentCloser({parentLevel: 0});
-    
-    function initParentElementsHandlers($block) {
-        $(".delete-block").parentCloser({parentLevel: 0});
-        $block.find(".file").remove();
-        $block.find(".file_input").val("");
-        $block.find(".consultation_key").remove();
-        FormComponent.reinitCustomSelectFull($block);
-        FormComponent.initDatapickers();
-    }
-}
-```
-
-Данный код сработает для 
