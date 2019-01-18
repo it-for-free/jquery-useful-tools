@@ -44,3 +44,14 @@ $.fn.nthParent = function(n){
     }
     return $p;
 };
+
+/**
+ * Склонирует элемент и все дата атрибуты, отвязав события
+ * от самого элемента и всех его потомков
+ * 
+ * @returns {unresolved}
+ */
+$.fn.cloneWithDataAttrs = function() {   
+    var $this = $(this);
+    return $this.clone().off().unbindAllForChildren();
+}
