@@ -1,0 +1,29 @@
+{
+  "name": "jquery-useful-tools",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "build-no-jswl": "webpack --config webpack-no-jswl.config.js"
+  },
+  "dependencies": {
+    "jquery": "3.2.1",
+    "jquery-ui": "1.12.1",
+    "js-wrapper-lib": "0.0.5"
+  },
+  "devDependencies": {
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
+  },
+  "description": "webpack to conct js and other tests",
+  "main": "webpack.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vedro-compota/webpack-test.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/vedro-compota/webpack-test/issues"
+  },
+  "homepage": "https://github.com/vedro-compota/webpack-test#readme"
+}
