@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import   '../common/nthParent.js';
+import   './common-plugins/juts-common-plugins.js';
 
 /**
  * Плагин добавления групп полей на форму,
