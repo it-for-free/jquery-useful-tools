@@ -3,7 +3,7 @@
  */
 import $ from 'jquery';
 import AlreadyInitIdsStorage from '../common/AlreadyInitIdsStorage.js';
-import   './juts-common-plugins.js';
+import   './juts-common-jquery-plugins.js';
 
 /**
  * Плавно скрываем и удаляем родительский элемент при клике по данному/
