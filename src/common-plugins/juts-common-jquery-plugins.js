@@ -104,19 +104,6 @@ $.fn.isAttrEmpty = function(attrName) {
 }
 
 /**
- * Заменит id всех потомков (рекурсивно) на уникальные (или создаст эти id,
- * если их не было)
- * 
- * @returns {type.fn.renewUniqueIdsForChildren.$this}
- */
-$.fn.renewUniqueIdsForChildren = function() {
-    var $this = $(this);
-    $this.find('*').removeAttr('id').renewUniqueId();
-    return $this;
-}
-
-
-/**
  * Отвяжет все обработчики событий от потомков
  * 
  * @returns {type.fn.unbindAllForChildren.$this}
@@ -126,8 +113,6 @@ $.fn.unbindAllForChildren = function() {
     $this.find('*').unbind();
     return $this;
 }
-
-
 
 /**
  * Плавно скроет, а затем удалит блок

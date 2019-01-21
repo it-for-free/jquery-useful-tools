@@ -1,3 +1,5 @@
+"use strict";
+
 export default jutsAlreadyInitIdsStorage;
 import jswl from "js-wrapper-lib";
 
@@ -14,14 +16,14 @@ import jswl from "js-wrapper-lib";
  *  
  * @returns {object}
  */
-jutsAlreadyInitIdsStorage = function(){}; 
+ var jutsAlreadyInitIdsStorage = function(){}; 
 
 /**
  *  Уже используемые
  * 
  * @type Object
  */
-var _storageData = {};
+jutsAlreadyInitIdsStorage._storageData = {};
 
 /**
 * Проверит наличие элемента в списке __alreadyInitIdsStorage
@@ -47,5 +49,3 @@ jutsAlreadyInitIdsStorage.checkAndAddIfNeed = function(elementId, substorageName
 
    return result;
 }
-
-

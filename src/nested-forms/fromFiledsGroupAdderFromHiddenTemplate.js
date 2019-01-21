@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import   './common-plugins/juts-common-plugins.js';
+import   '../common-plugins/juts-common-jquery-plugins.js';
 
 /**
  * Плагин добавления групп полей на форму,

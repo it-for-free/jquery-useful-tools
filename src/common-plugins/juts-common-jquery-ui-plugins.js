@@ -52,3 +52,15 @@ $.fn.renewUniqueId = function(){
     return $this;
 
 };
+
+/**
+ * Заменит id всех потомков (рекурсивно) на уникальные (или создаст эти id,
+ * если их не было)
+ * 
+ * @returns {type.fn.renewUniqueIdsForChildren.$this}
+ */
+$.fn.renewUniqueIdsForChildren = function() {
+    var $this = $(this);
+    $this.find('*').removeAttr('id').renewUniqueId();
+    return $this;
+}

@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "build-no-jswl": "webpack --config webpack-no-jswl.config.js"
+    "build": "webpack --config webpack.config.js"
   },
   "dependencies": {
     "jquery": "3.2.1",
