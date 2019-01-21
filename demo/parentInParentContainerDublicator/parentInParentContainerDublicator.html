@@ -43,6 +43,7 @@
                             <textarea name="students[0][info]"> </textarea>
                         </div>
                         <br>
+                        <a href="#" class="add-student"> [Добавить] </a>
                         <a href="#" class="delete-student"> [Удалить] </a>
                     </div>
 
@@ -57,13 +58,11 @@
                             <textarea name="students[1][info]"> </textarea>
                         </div>
                         <br>
+                        <a href="#" class="add-student"> [Добавить] </a>
                         <a href="#" class="delete-student"> [Удалить] </a>
                     </div>
 
                 </div>
-                <br>
-                <br>
-                <a href="#" id="add-new-student"> [Добавить студента] </a>
                 <br>
                 <br>
 
@@ -72,23 +71,7 @@
 
             </form>
 
-            <!-- Скрытое хранилище шаблона -->
-            <div id="sudent-info-template-container" style="display: none">
-
-                <div class="student-info" style="display: none"> <!--  блок-обертка для группы полей -->
-                    <div class="filed-group"> 
-                        <label for="students[%sudent-number%][name]">ФИО:</label>
-                        <input type="text" name="students[%sudent-number%][fio]" value="">
-                    </div>
-
-                    <div class="filed-group">
-                        <label for="students[%sudent-number%][info]">Примечания:</label>
-                        <textarea name="students[%sudent-number%][info]"> </textarea>
-                    </div>
-                    <br>
-                    <a href="#" class="delete-student"> [Удалить] </a>
-                </div>
-            </div>   
+     
 
         </div>
 
@@ -114,7 +97,7 @@
         <script src="../../node_modules/js-wrapper-lib/dist/jswl.js"></script>
         <script src="../../dist/juts-no-jswl.js"></script>-->
 
-        <script src="add-from-template-demo.js"></script>
+        <script src="example.js"></script>
     </body>
 
 </html>
