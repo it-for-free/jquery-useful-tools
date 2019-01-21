@@ -10,6 +10,8 @@ import jswl from "js-wrapper-lib";
  *  обработчики одного и того же плагина не вешались
  *  на один и тот же элемент дважды)
  *  
+ *  Можно использовать импортировав как AlreadyInitIdsStorage
+ *  
  * @returns {object}
  */
 jutsAlreadyInitIdsStorage = function(){}; 
