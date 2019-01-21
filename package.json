@@ -3,15 +3,16 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --watch --mode=development"
   },
   "dependencies": {
     "jquery": "3.2.1",
     "jquery-ui": "1.12.1",
-    "js-wrapper-lib": "0.0.5"
+    "js-wrapper-lib": "0.0.6"
   },
   "devDependencies": {
-    "webpack": "^4.28.4",
+    "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1"
   },
   "description": "webpack to conct js and other tests",

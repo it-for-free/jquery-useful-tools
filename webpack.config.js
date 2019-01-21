@@ -3,7 +3,7 @@ var path = require('path'); // для работы с path
 
 module.exports = [
     {  // обычная сборка, jquery и jqueryUi не включены
-        mode: 'development',
+        mode: 'production',
         entry: {
             'juts': './src/main.js'
         },
@@ -22,7 +22,7 @@ module.exports = [
         }
     },
     { // как обычная, на ещё и не в ключени библиотека jswl
-        mode: 'development',
+        mode: 'production',
         entry: {
             'juts': './src/main.js'
         },
