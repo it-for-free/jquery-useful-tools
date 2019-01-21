@@ -15,7 +15,6 @@ module.exports = [
             "jquery": "$", 
             "jquery-ui": "JQueryUi"
         },
-        watch: true,
         watchOptions: {
             aggregateTimeout: 500,
             poll: 1000 // порверяем измемения раз в секунду
@@ -35,7 +34,6 @@ module.exports = [
             "jquery": "$", 
             "jquery-ui": "JQueryUi"
         },
-        watch: true,
         watchOptions: {
             aggregateTimeout: 500,
             poll: 1000 // порверяем измемения раз в секунду
