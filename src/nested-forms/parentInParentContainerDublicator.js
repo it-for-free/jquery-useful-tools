@@ -34,8 +34,8 @@ import jswl from "js-wrapper-lib";
  
  copyValuesInsteadOtherPlaceholders      // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Делать ли замену плейсхолдеров, которые остались в шаблоне значения атрибута после подстановки вместо replaceRegexp (основная)
  checkNameFragmentIsPlaceholderCallback:: function(attrSubstr) {   // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером 
- return jswl.checkForSubstring(attrSubstr, '%');
- },
+        return jswl.checkForSubstring(attrSubstr, '%');
+    },
  containerCallback : function($container) {}    // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для вызова на контейнере 
  -- элементе уровня containerParentLevel, в который происходит дублирование, 
  может быть использован, например, для перенумерации потомков, после очередного добавления
