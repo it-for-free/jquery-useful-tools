@@ -1,5 +1,5 @@
 /**
- * Плагин для JqueryUi (с опорой на функционал jqueryui)
+ * Плагины для JqueryUi (с опорой на функционал jqueryui)
  */
 
 import $ from 'jquery';
