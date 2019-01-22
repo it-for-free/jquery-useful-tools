@@ -3,7 +3,7 @@
  */
 
 import $ from 'jquery';
-import JQueryUi from 'jquery-ui';
+import 'jquery-ui';
 import jswl from "js-wrapper-lib";
 import   './juts-common-jquery-plugins.js';
 

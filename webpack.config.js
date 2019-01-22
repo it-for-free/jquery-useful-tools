@@ -11,10 +11,12 @@ module.exports = [
           path: path.resolve(__dirname, 'dist'),
           filename: '[name].js',
         },
-        externals: { // внешние библиотеки
-            "jquery": "$", 
-            "jquery-ui": "JQueryUi"
-        },
+        externals: [{ // внешние библиотеки
+                "jquery": "$", 
+            },
+            /^jquery-ui$/ // исключаем без глобальное переменной по регулярке
+            
+        ],
         watchOptions: {
             aggregateTimeout: 500,
             poll: 1000 // порверяем измемения раз в секунду
@@ -29,11 +31,12 @@ module.exports = [
           path: path.resolve(__dirname, 'dist'),
           filename: '[name]-no-jswl.js',
         },
-        externals: { // внешние библиотеки
-            "js-wrapper-lib": "jswl",
-            "jquery": "$", 
-            "jquery-ui": "JQueryUi"
-        },
+        externals: [{ // внешние библиотеки
+                "jquery": "$",
+                "js-wrapper-lib": "jswl", 
+            },
+            /^jquery-ui$/
+        ],
         watchOptions: {
             aggregateTimeout: 500,
             poll: 1000 // порверяем измемения раз в секунду
