@@ -12,7 +12,7 @@
 ```html
 <script src="jquery.js"></script> 
 <script src="jquery-ui.js"></script> 
-<script src="jquery-useful-tools.js"></script> 
+<script src="dist/juts-min.js"></script> 
 ```
 
 ## Основные плагины JUTs
