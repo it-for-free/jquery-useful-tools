@@ -1,23 +1,19 @@
 $( "document" ).ready(function(){
   
-
-    $(".add-block").parentInParentContainerDublicator(
+  console.log('hello!');
+    $(".add-student").parentInParentContainerDublicator(
         {
-        "thisSelector": ".add-block", 
+        "thisSelector": ".add-student", 
         "containerParentLevel": 1,   
         "parentLevel": 0, 
-        "replaceRegexp": /%fields_group_number_2%/g,   
+        "replaceRegexp": /%fields_group_number_2%/g,
+        "afterCloneCallback": initParentElementsHandlers
     });
     
-    $(".delete-block").parentCloser({parentLevel: 0});
+    $(".delete-student").parentCloser({parentLevel: 0});
     
     function initParentElementsHandlers($block) {
-        $(".delete-block").parentCloser({parentLevel: 0});
-        $block.find(".file").remove();
-        $block.find(".file_input").val("");
-        $block.find(".consultation_key").remove();
-        FormComponent.reinitCustomSelectFull($block);
-        FormComponent.initDatapickers();
+        $(".delete-student").parentCloser({parentLevel: 0});
     }
 
 });

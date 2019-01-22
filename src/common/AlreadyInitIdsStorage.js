@@ -1,6 +1,5 @@
 "use strict";
 
-export default jutsAlreadyInitIdsStorage;
 import jswl from "js-wrapper-lib";
 
 /**
@@ -49,3 +48,5 @@ jutsAlreadyInitIdsStorage.checkAndAddIfNeed = function(elementId, substorageName
 
    return result;
 }
+
+export default jutsAlreadyInitIdsStorage;

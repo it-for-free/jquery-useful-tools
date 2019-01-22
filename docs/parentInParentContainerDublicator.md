@@ -21,26 +21,20 @@
 Пример вызова вместе с плагином удаления `parentCloser()`:
 
 ```javascript
-function initConsultElements() {
-    $(".add-block").parentInParentContainerDublicator(
-        {
-        "thisSelector": ".add-block", 
-        "containerParentLevel": 1,   
-        "parentLevel": 0, 
-        "replaceRegexp": /%fields_group_number_2%/g,
-        "afterCloneCallback": initParentElementsHandlers    
-    });
-    
-    $(".delete-block").parentCloser({parentLevel: 0});
-    
-    function initParentElementsHandlers($block) {
-        $(".delete-block").parentCloser({parentLevel: 0});
-        $block.find(".file").remove();
-        $block.find(".file_input").val("");
-        $block.find(".consultation_key").remove();
-        FormComponent.reinitCustomSelectFull($block);
-        FormComponent.initDatapickers();
-    }
+$(".add-student").parentInParentContainerDublicator(
+    {
+    "thisSelector": ".add-student", 
+    "containerParentLevel": 1,   
+    "parentLevel": 0, 
+    "replaceRegexp": /%fields_group_number_2%/g,
+    "afterCloneCallback": initParentElementsHandlers
+});
+
+$(".delete-student").parentCloser({parentLevel: 0});
+
+function initParentElementsHandlers($block) {
+    $(".delete-student").parentCloser({parentLevel: 0});
+    FormComponent.reinitCustomSelectFull($block);
 }
 ```
 
@@ -55,7 +49,8 @@ function initConsultElements() {
 * `replaceRegexp: /%plholder%/g`, регулярное выражение для замены 
                                            в аттрибутах подстроки на порядокый номер данного элемента в родителе
 * `afterCloneCallback: function($addedGroup) {}`    НЕ ОБЯЗАТЕЛЕН: эта функция будет 
-                                              вызвна для копируемого шаблона (вы можете провести дополнительные инициллизации)
+                                            вызвана для копируемого шаблона (вы можете провести дополнительные инициллизации), по факту
+                                            в данный момент она используется, как минимум для повторной иницилизации элемента удаления
 * `attributesToReplaceFromTemplate:   ['name', 'for', 'class']`, // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Массив атрибутов 
                                            каждого клонированного элемента (внутри склонированного блока),
                                            в которых необходимо провести замену из шаблона, определяемого templateDataFieldAdditionalPart
