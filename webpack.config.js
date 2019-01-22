@@ -3,7 +3,7 @@ var path = require('path'); // для работы с path
 var webpack = require('webpack');
 
 // определим игнорируемые правила
-var ignore = new webpack.IgnorePlugin(/^jquery-ui$/);
+//var ignore = new webpack.IgnorePlugin(/^jquery-ui$/);
 
 module.exports = [
     {  // обычная сборка, jquery и jqueryUi не включены
@@ -16,14 +16,16 @@ module.exports = [
           filename: '[name].js',
         },
         externals: [{ // внешние библиотеки
-                "jquery": "$", 
-            } 
+                "jquery": "$",
+                "jquery-ui": null
+            },
+            
         ],
         watchOptions: {
             aggregateTimeout: 500,
             poll: 1000 // порверяем измемения раз в секунду
         },
-        plugins: [ignore],
+//        plugins: [ignore],
         devtool: "source-map"
     },
     { // как обычная, на ещё и не в ключени библиотека jswl
@@ -38,13 +40,14 @@ module.exports = [
         externals: [{ // внешние библиотеки
                 "jquery": "$",
                 "js-wrapper-lib": "jswl", 
-            }
+                "jquery-ui": null
+            },
         ],
         watchOptions: {
             aggregateTimeout: 500,
             poll: 1000 // порверяем измемения раз в секунду
         },
-        plugins: [ignore],
+//        plugins: [ignore],
         devtool: "source-map"
     }
 ];
