@@ -9,18 +9,18 @@ module.exports = [
         },
         output: {
           path: path.resolve(__dirname, 'dist'),
-          filename: '[name]-min.js',
+          filename: '[name]-min.js'
         },
         externals: [{ // внешние библиотеки
                 "jquery": "$",
                 "jquery-ui": "null"
-            },
+            }
         ],
         watchOptions: {
             aggregateTimeout: 500,
             poll: 1000 // порверяем измемения раз в секунду
         },
-        devtool: "source-map",
+        devtool: "source-map"
     },
     { // как обычная, на ещё и не в ключени библиотека jswl
         mode: 'production',
@@ -29,13 +29,13 @@ module.exports = [
         },
         output: {
           path: path.resolve(__dirname, 'dist'),
-          filename: '[name]-no-jswl-min.js',
+          filename: '[name]-no-jswl-min.js'
         },
         externals: [{ // внешние библиотеки
                 "jquery": "$",
                 "js-wrapper-lib": "jswl", 
                 "jquery-ui": "null"
-            },
+            }
         ],
         watchOptions: {
             aggregateTimeout: 500,
@@ -51,12 +51,12 @@ module.exports = [
         },
         output: {
           path: path.resolve(__dirname, 'dist'),
-          filename: '[name].js',
+          filename: '[name].js'
         },
         externals: [{ // внешние библиотеки
                 "jquery": "$",
                 "jquery-ui": "null"
-            },
+            }
         ],
         watchOptions: {
             aggregateTimeout: 500,
@@ -80,7 +80,7 @@ module.exports = [
                 "jquery": "$",
                 "js-wrapper-lib": "jswl", 
                 "jquery-ui": "null"
-            },
+            }
         ],
         watchOptions: {
             aggregateTimeout: 500,
