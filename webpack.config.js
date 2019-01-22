@@ -17,7 +17,7 @@ module.exports = [
         },
         externals: [{ // внешние библиотеки
                 "jquery": "$",
-                "jquery-ui": null
+                "jquery-ui": "null"
             },
             
         ],
@@ -40,7 +40,7 @@ module.exports = [
         externals: [{ // внешние библиотеки
                 "jquery": "$",
                 "js-wrapper-lib": "jswl", 
-                "jquery-ui": null
+                "jquery-ui": "null"
             },
         ],
         watchOptions: {
