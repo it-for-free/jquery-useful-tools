@@ -20,7 +20,8 @@ module.exports = [
         watchOptions: {
             aggregateTimeout: 500,
             poll: 1000 // порверяем измемения раз в секунду
-        }
+        },
+        devtool: "source-map"
     },
     { // как обычная, на ещё и не в ключени библиотека jswl
         mode: 'production',
@@ -40,6 +41,7 @@ module.exports = [
         watchOptions: {
             aggregateTimeout: 500,
             poll: 1000 // порверяем измемения раз в секунду
-        }
+        },
+        devtool: "source-map"
     }
 ];
