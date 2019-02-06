@@ -1455,7 +1455,7 @@ external_$_default.a.fn.isInputsEmpty = function (options) {
                value = external_$_default.a.trim(value); 
             }
             
-            console.log(value, $input.getInputType(), $input);
+//            console.log(value, $input.getInputType(), $input);
 
             if (!jswl_default.a.isEmpty(value)
                 || (!settings.emptyZero && (value === 0  || value === '0')))

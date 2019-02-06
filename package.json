@@ -1,6 +1,6 @@
 {
   "name": "jquery-useful-tools",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "scripts": {
     "build": "webpack --config webpack.config.js",
