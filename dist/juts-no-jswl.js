@@ -1199,7 +1199,8 @@ external_$_default.a.fn.isInputsEmpty = function (options) {
     $this.find(":input").each(function() {
         var $input = external_$_default()(this);
 
-        console.log($input.val(), $input.getInputType(), $input);
+//        console.log($input.val(), $input.getInputType(), $input);
+
         if (!(settings.ignoreCustom  //  игнорирование выключено или тип не из списка игнорирования
             && external_jswl_default.a.inArray($input.getInputType(), settings.ignoreCustomTypes))
             && !external_jswl_default.a.inArray($input.getInputType(), settings.ignoreTypesDefault) // нет в базовом списке игнорирования
@@ -1211,7 +1212,7 @@ external_$_default.a.fn.isInputsEmpty = function (options) {
                value = external_$_default.a.trim(value); 
             }
             
-            console.log(value, $input.getInputType(), $input);
+//            console.log(value, $input.getInputType(), $input);
 
             if (!external_jswl_default.a.isEmpty(value)
                 || (!settings.emptyZero && (value === 0  || value === '0')))

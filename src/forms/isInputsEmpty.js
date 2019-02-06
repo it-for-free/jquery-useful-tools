@@ -26,7 +26,8 @@ $.fn.isInputsEmpty = function (options) {
     $this.find(":input").each(function() {
         var $input = $(this);
 
-        console.log($input.val(), $input.getInputType(), $input);
+//        console.log($input.val(), $input.getInputType(), $input);
+
         if (!(settings.ignoreCustom  //  игнорирование выключено или тип не из списка игнорирования
             && jswl.inArray($input.getInputType(), settings.ignoreCustomTypes))
             && !jswl.inArray($input.getInputType(), settings.ignoreTypesDefault) // нет в базовом списке игнорирования
@@ -38,7 +39,7 @@ $.fn.isInputsEmpty = function (options) {
                value = $.trim(value); 
             }
             
-            console.log(value, $input.getInputType(), $input);
+//            console.log(value, $input.getInputType(), $input);
 
             if (!jswl.isEmpty(value)
                 || (!settings.emptyZero && (value === 0  || value === '0')))
