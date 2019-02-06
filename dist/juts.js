@@ -1436,15 +1436,19 @@ external_$_default.a.fn.isInputsEmpty = function (options) {
         ignoreTypesDefault: ['submit'],
         emptyZero: false, // считать ли ноль пустым значением
         trim: true,
+        ignoreUncheckedCheckbox: true,
     }, options);
     
     var $this = external_$_default()(this);
     var result = true;
     $this.find(":input").each(function() {
         var $input = external_$_default()(this);
-        if (!(settings.ignoreCustom  // если игнорирование выключено или тип не из списка игнорирования
+        
+        if (!(settings.ignoreCustom  //  игнорирование выключено или тип не из списка игнорирования
             && jswl_default.a.inArray($input.getInputType(), settings.ignoreCustomTypes))
-            && !jswl_default.a.inArray($input.getInputType(), settings.ignoreTypesDefault)) {
+            && !jswl_default.a.inArray($input.getInputType(), settings.ignoreTypesDefault) // нет в базовом списке игнорирования
+            && !(settings.ignoreUncheckedCheckbox && ($input.getInputType() === 'checkbox') && !$input.is(':checked')) // нет того, что это неотмеченный чекбокс при включенном игнорировании таких
+            ) {
             
             var value  = $input.val();
             if (settings.trim) {
