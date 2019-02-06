@@ -81,43 +81,24 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/main.js");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports) {
+/******/ ({
 
-module.exports = $;
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = jswl;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-module.exports = null;
-
-/***/ }),
-/* 3 */
+/***/ "./src/common-plugins/juts-common-jquery-plugins.js":
+/*!**********************************************************!*\
+  !*** ./src/common-plugins/juts-common-jquery-plugins.js ***!
+  \**********************************************************/
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-
-// EXTERNAL MODULE: external "$"
-var external_$_ = __webpack_require__(0);
-var external_$_default = /*#__PURE__*/__webpack_require__.n(external_$_);
-
-// EXTERNAL MODULE: external "jswl"
-var external_jswl_ = __webpack_require__(1);
-var external_jswl_default = /*#__PURE__*/__webpack_require__.n(external_jswl_);
-
-// CONCATENATED MODULE: ./src/common-plugins/juts-common-jquery-plugins.js
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var js_wrapper_lib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-wrapper-lib */ "js-wrapper-lib");
+/* harmony import */ var js_wrapper_lib__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(js_wrapper_lib__WEBPACK_IMPORTED_MODULE_1__);
 
 
 
@@ -139,9 +120,9 @@ var external_jswl_default = /*#__PURE__*/__webpack_require__.n(external_jswl_);
  * @param {String} counterName   имя атрибута (будет data-counterName)
  * @returns {undefined}
  */
-external_$_default.a.fn.incDataAttrCounter = function(counterName) {
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.incDataAttrCounter = function(counterName) {
 
-    var $element = external_$_default()(this);
+    var $element = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
     if ($element.isDataAttrEmpty(counterName)) {
         $element.data(counterName, (1).toString());
     } else {
@@ -157,8 +138,8 @@ external_$_default.a.fn.incDataAttrCounter = function(counterName) {
  *                     Например: уровень папы = 0, прадедушки = 2
  * @returns {type.fn.nthParent.$p}
  */
-external_$_default.a.fn.nthParent = function(n){
-    var $p = external_$_default()(this);
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.nthParent = function(n){
+    var $p = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
     while ( n-- >= 0 )
     {
       $p = $p.parent();
@@ -172,8 +153,8 @@ external_$_default.a.fn.nthParent = function(n){
  * 
  * @returns {unresolved}
  */
-external_$_default.a.fn.cloneWithDataAttrs = function() {   
-    var $this = external_$_default()(this);
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.cloneWithDataAttrs = function() {   
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
     return $this.clone().off().unbindAllForChildren();
 }
 
@@ -183,8 +164,8 @@ external_$_default.a.fn.cloneWithDataAttrs = function() {
  * @param {type} counterName
  * @returns {unresolved}
  */
-external_$_default.a.fn.getDataAttrCounter = function(counterName) {      
-    var $element = external_$_default()(this);
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.getDataAttrCounter = function(counterName) {      
+    var $element = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
 
     if ($element.isDataAttrEmpty(counterName)) {
         throw new Error("Counter is with name ", counterName,
@@ -201,10 +182,10 @@ external_$_default.a.fn.getDataAttrCounter = function(counterName) {
  * @param {String} attrName
  * @returns {unresolved}
  */
-external_$_default.a.fn.isDataAttrEmpty = function(attrName) {
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.isDataAttrEmpty = function(attrName) {
 
-    var dataAttr = external_$_default()(this).data(attrName);
-    return (external_jswl_default.a.isEmpty(dataAttr));
+    var dataAttr = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data(attrName);
+    return (js_wrapper_lib__WEBPACK_IMPORTED_MODULE_1___default.a.isEmpty(dataAttr));
 }
 
 
@@ -215,9 +196,9 @@ external_$_default.a.fn.isDataAttrEmpty = function(attrName) {
  * @param {String} attrName  имя атрибута
  * @returns {unresolved}
  */
-external_$_default.a.fn.isAttrEmpty = function(attrName) {
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.isAttrEmpty = function(attrName) {
 
-    var dataAttrName = external_$_default()(this).attr(attrName);
+    var dataAttrName = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr(attrName);
     var result = ((typeof(dataAttrName) === 'undefined')
             || (dataAttrName === false));
     return result;
@@ -228,8 +209,8 @@ external_$_default.a.fn.isAttrEmpty = function(attrName) {
  * 
  * @returns {type.fn.unbindAllForChildren.$this}
  */
-external_$_default.a.fn.unbindAllForChildren = function() {
-    var $this = external_$_default()(this);
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.unbindAllForChildren = function() {
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
     $this.find('*').unbind();
     return $this;
 }
@@ -245,9 +226,9 @@ external_$_default.a.fn.unbindAllForChildren = function() {
  *   afterRemoveFinishedParams:  {}  // НЕОБЯЗАТЕЛЬНЫЙ ПРАМЕТР параметры для колбека
  * @returns {undefined}
  */
-external_$_default.a.fn.removeSmoothly = function(options) {
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.removeSmoothly = function(options) {
 
-    var settings = external_$_default.a.extend({
+    var settings = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
         afterRemoveFinishedCallback: function() {},
         afterRemoveFinishedParams: {}, 
     }, options);
@@ -257,7 +238,7 @@ external_$_default.a.fn.removeSmoothly = function(options) {
             width: "0px", // высоту к нулю
             opacity: 0, // прозрачность к нулю
         }, 600, function() {
-            external_$_default()(this).remove(); // удаляем из DOM (если требуется, если же нет, то "закомментируйте" эту строку)
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).remove(); // удаляем из DOM (если требуется, если же нет, то "закомментируйте" эту строку)
             settings.afterRemoveFinishedCallback(
                 settings.afterRemoveFinishedParams
             ); // вызываем колбек
@@ -273,8 +254,8 @@ external_$_default.a.fn.removeSmoothly = function(options) {
  * @param {JQuery} $element -- элемент который должен стать видимым
  * @returns {undefined}
  */
-external_$_default.a.fn.scrollMeTo = function($element) {
-    var $this = external_$_default()(this);
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.scrollMeTo = function($element) {
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
 
     $this.animate({
          scrollTop: $element.offset().top
@@ -287,8 +268,8 @@ external_$_default.a.fn.scrollMeTo = function($element) {
  * 
  * @returns {type.fn.removeSelect2Span.$this}
  */
-external_$_default.a.fn.removeSelect2Span = function () {
-    var $this = external_$_default()(this); // your select
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.removeSelect2Span = function () {
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this); // your select
     var $oldSpan = $this.next('span.select2-container');
     $oldSpan.remove();
 
@@ -302,8 +283,8 @@ external_$_default.a.fn.removeSelect2Span = function () {
  * 
  * @returns {type.fn.removeSelect2Span.$this}
  */
-external_$_default.a.fn.select2GetSpan = function () {
-    var $this = external_$_default()(this); // your select
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.select2GetSpan = function () {
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this); // your select
     var $select2Span = $this.next('span.select2-container');
 
     return $select2Span;
@@ -316,9 +297,9 @@ external_$_default.a.fn.select2GetSpan = function () {
  * @param {object} options   CSS свойства 
  * @returns {undefined}
  */
-external_$_default.a.fn.select2SetError = function(options) {
-    var $this = external_$_default()(this);
-    var settings = external_$_default.a.extend({
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.select2SetError = function(options) {
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+    var settings = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
         // These are the defaults.
         "border-color": 'red',
         "border-style": 'solid'
@@ -341,10 +322,10 @@ external_$_default.a.fn.select2SetError = function(options) {
  * @param {type} className
  * @returns {type.fn.fromFirstInputWithClass.$result}
  */
-external_$_default.a.fn.formFirstInput = function(inputSelector) {
-    var $this  = external_$_default()(this);
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.formFirstInput = function(inputSelector) {
+    var $this  = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
 
-    if (external_jswl_default.a.isEmpty(inputSelector)) {
+    if (js_wrapper_lib__WEBPACK_IMPORTED_MODULE_1___default.a.isEmpty(inputSelector)) {
        inputSelector = ''; 
     }
 
@@ -360,8 +341,8 @@ external_$_default.a.fn.formFirstInput = function(inputSelector) {
  * 
  * @returns {string}  весь HTML элемента
  */
-external_$_default.a.fn.outerHTML = function(){
-    var $this = external_$_default()(this);
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.outerHTML = function(){
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
     return $this[0].outerHTML;
 }
 
@@ -378,17 +359,17 @@ external_$_default.a.fn.outerHTML = function(){
    "fragmentNumber": 0,
  * @returns string
  */
-external_$_default.a.fn.getAttrFragment = function(options) {
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.getAttrFragment = function(options) {
 
-    var $this = external_$_default()(this);
-    var settings = external_$_default.a.extend({
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+    var settings = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
         "attributeName": 'name',
         "fragmentNumber": 0
     }, options);
 
     var str = $this.attr(settings.attributeName);
 
-    return external_jswl_default.a.getSquareBracketedFragmentByNumber(str, settings.fragmentNumber);
+    return js_wrapper_lib__WEBPACK_IMPORTED_MODULE_1___default.a.getSquareBracketedFragmentByNumber(str, settings.fragmentNumber);
 }
 
 /**
@@ -400,15 +381,30 @@ external_$_default.a.fn.getAttrFragment = function(options) {
  * @param   {int} fragmentNumber
  * @returns {string}
  */
-external_$_default.a.fn.getNameFragment = function(fragmentNumber) {
-    var $this = external_$_default()(this);
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.getNameFragment = function(fragmentNumber) {
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
     return $this.getAttrFragment({"attributeName": 'name',
         "fragmentNumber": fragmentNumber});
 }
-// EXTERNAL MODULE: external "null"
-var external_null_ = __webpack_require__(2);
 
-// CONCATENATED MODULE: ./src/common-plugins/juts-common-jquery-ui-plugins.js
+/***/ }),
+
+/***/ "./src/common-plugins/juts-common-jquery-ui-plugins.js":
+/*!*************************************************************!*\
+  !*** ./src/common-plugins/juts-common-jquery-ui-plugins.js ***!
+  \*************************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var jquery_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery-ui */ "jquery-ui");
+/* harmony import */ var jquery_ui__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery_ui__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var js_wrapper_lib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! js-wrapper-lib */ "js-wrapper-lib");
+/* harmony import */ var js_wrapper_lib__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(js_wrapper_lib__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _juts_common_jquery_plugins_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./juts-common-jquery-plugins.js */ "./src/common-plugins/juts-common-jquery-plugins.js");
 /**
  * Плагины для JqueryUi (с опорой на функционал jqueryui)
  */
@@ -433,18 +429,18 @@ var external_null_ = __webpack_require__(2);
  *  
  * @returns {undefined}
  */
-external_$_default.a.fn.scrollToMe = function(scrollableElementSelector) {
-    var $this = external_$_default()(this); 
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.scrollToMe = function(scrollableElementSelector) {
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this); 
     var $scrollableParent = 'none';
 
-    if (external_jswl_default.a.isEmpty(scrollableElementSelector)) {
-        $scrollableParent = external_$_default.a.browser.mozilla ? external_$_default()('html') : external_$_default()('body');
+    if (js_wrapper_lib__WEBPACK_IMPORTED_MODULE_2___default.a.isEmpty(scrollableElementSelector)) {
+        $scrollableParent = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.browser.mozilla ? jquery__WEBPACK_IMPORTED_MODULE_0___default()('html') : jquery__WEBPACK_IMPORTED_MODULE_0___default()('body');
         // $scrollableParent = $this.scrollParent();
     } else if (scrollableElementSelector === '&get-scroll-parent&') {
         $scrollableParent = $this.scrollParent();
     } else {
 
-        $scrollableParent = external_$_default()(scrollableElementSelector);
+        $scrollableParent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(scrollableElementSelector);
     }
 
     $scrollableParent.scrollMeTo($this);
@@ -458,8 +454,8 @@ external_$_default.a.fn.scrollToMe = function(scrollableElementSelector) {
  * @param {type} n
  * @returns {type.fn.renewUniqueId.$p}
  */
-external_$_default.a.fn.renewUniqueId = function(){
-    var $this = external_$_default()(this);
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.renewUniqueId = function(){
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
     $this.removeUniqueId().uniqueId();
     return $this;
 
@@ -471,12 +467,290 @@ external_$_default.a.fn.renewUniqueId = function(){
  * 
  * @returns {type.fn.renewUniqueIdsForChildren.$this}
  */
-external_$_default.a.fn.renewUniqueIdsForChildren = function() {
-    var $this = external_$_default()(this);
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.renewUniqueIdsForChildren = function() {
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
     $this.find('*').removeAttr('id').renewUniqueId();
     return $this;
 }
-// CONCATENATED MODULE: ./src/common/AlreadyInitIdsStorage.js
+
+/***/ }),
+
+/***/ "./src/common-plugins/parentCloser.js":
+/*!********************************************!*\
+  !*** ./src/common-plugins/parentCloser.js ***!
+  \********************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_AlreadyInitIdsStorage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/AlreadyInitIdsStorage.js */ "./src/common/AlreadyInitIdsStorage.js");
+/* harmony import */ var _juts_common_jquery_plugins_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./juts-common-jquery-plugins.js */ "./src/common-plugins/juts-common-jquery-plugins.js");
+/**
+ * Удаление/сокрытие родительских элементов
+ */
+
+
+
+
+/**
+ * Плавно скрываем и удаляем родительский элемент при клике по данному/
+ * Является обёрткой для __deleteParentByLevelForUnique()
+ * 
+ * @param {options} options  настройки:
+ * 
+ * parentLevel:     0,          уровень родителя относительно элеента, на который вещается плагин
+ parentContainerLevel:   1,   // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР уровень котейнера родителя (используются в частности для перенумерации элементов после удаления)
+ containerCallback : function($container) {}    // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для вызова на контейнере 
+ -- элементе уровня parentContainerLevel, в который происходит дублирование, 
+ может быть использован, например, для перенумерации потомков, после очередного добавления
+ 
+ * @returns {block-dublicatorL#10.$.fn@call;each|Boolean}
+ */
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.parentCloser = function (options) {
+
+    var settings = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
+        parentLevel: 0,
+        parentContainerLevel: 1,
+        containerCallback: function ($container) {}
+    }, options);
+
+
+    var elementId = '';
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).uniqueId();
+    return this.each(function () {
+        elementId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('id');
+
+        if (!_common_AlreadyInitIdsStorage_js__WEBPACK_IMPORTED_MODULE_1__["default"].checkAndAddIfNeed(elementId, 'parentCloser')) {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#' + elementId).__deleteParentByLevelForUnique(settings);
+        }
+    });
+}
+
+
+
+/**
+ * @see НЕ вызывать напрямую!
+ * Палавно скрываем и удаляем родительский элемент при клике по данному
+ * 
+ * @param {options} options  настройки:
+ * 
+ * parentLevel:     0,          уровень родителя относительно элеента, на который вещается плагин
+ parentContainerLevel:   1,   // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР уровень котейнера родителя (используются в частности для перенумерации элементов после удаления)
+ containerCallback : function($container) {}    // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для вызова на контейнере 
+ -- элементе уровня parentContainerLevel, в который происходит дублирование, 
+ может быть использован, например, для перенумерации потомков, после очередного добавления
+ * @returns {undefined}
+ */
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.__deleteParentByLevelForUnique = function (options) {
+
+    var settings = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
+        parentLevel: 0,
+        parentContainerLevel: 1,
+        containerCallback: function ($container) {}
+    }, options);
+
+    var $controlElement = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+    this.click(onClick);
+
+    function onClick() {
+
+        var $controlElement = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+        var $parent = $controlElement.nthParent(settings.parentLevel);
+        var $container = $controlElement.nthParent(settings.parentContainerLevel);
+
+        $parent.removeSmoothly({
+            afterRemoveFinishedCallback: settings.containerCallback,
+            afterRemoveFinishedParams: $container
+        });
+
+        return false;
+    }
+}
+
+/***/ }),
+
+/***/ "./src/common-plugins/replaceInAttributes.js":
+/*!***************************************************!*\
+  !*** ./src/common-plugins/replaceInAttributes.js ***!
+  \***************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var js_wrapper_lib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-wrapper-lib */ "js-wrapper-lib");
+/* harmony import */ var js_wrapper_lib__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(js_wrapper_lib__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * Замены в атрибутах
+ */
+
+
+
+/**
+ * Проведёт замены значений атрибутов ВСЕХ ПОТОМКОВ данного элемента,
+ * на значение сформированное из значения
+ * специального поля-шаблона, в котором предварительно 
+ * по регулярному выражению заменяется подстрока
+ * 
+ * @param {type} options -- массив вида (значения по умолчанию):
+ *      {
+ searchRegexp:     /%fileds_group_number_lavel2%/g,  // Регулярное выражения для подстроки которую надо заменить
+ newValue:         '888',                            // Новая подстрока
+ attributeNames:   ['name', 'for'],                  // Массив атрибутов, в которых необходимо провести замену
+ templateDataFieldAdditionalPart: '-template'  // -- прибавка к имени (для определения data-атрибута)
+ // например если замена проходит для атрибута for, 
+ // то шаблон будет искаться в атрибуте data-for-template
+ copyValuesInsteadOtherPlaceholders            // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Делать ли замену плейсхолдеров, которые остались в шаблоне после подстановки вместо searchRegexp (основная)
+ checkNameFragmentIsPlaceholderCallback        // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером 
+ }
+ * @returns {type.fn.replaceInChildrenAttrsUsingTemplateNameDataAttr.$parent}
+ */
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.replaceInChildrenAttrsUsingTemplatesFromDataFileds = function (options) {
+
+    var $parent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+    var settings = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
+        searchRegexp: /%fileds_group_number_lavel2%/g,
+        newValue: '888',
+        attributeNames: ['name', 'for'],
+        templateDataFieldAdditionalPart: '-template',
+        copyValuesInsteadOtherPlaceholders: false,
+        checkNameFragmentIsPlaceholderCallback: function (substr) {
+            return false;
+        }
+
+    }, options);
+
+    $parent.find('*').each(function ()
+    {
+        var $current = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+        $current.replaceInAttrsUsingTemplatesFromDataFileds(settings);
+    })
+
+    return $parent;
+}
+
+
+
+/**
+ * Проведёт замены значений атрибутов данного элемента,
+ * на значения сформированные из значений
+ * специальных полей-шаблонов 
+ * (для каждого искомого атрибута такой data-атрибут-шаблон
+ * должен существовать, иначе никаких действий для данного 
+ * атрибута произведено не будет), в котором предварительно 
+ * по регулярному выражению заменяется подстрока
+ * 
+ * @param {type} options -- массив вида (значения по умолчанию):
+ *      {
+ searchRegexp:     /%fileds_group_number_lavel2%/g,  // Регулярное выражения для подстроки которую надо заменить
+ newValue:         '888',                            // Новая подстрока
+ attributeNames:   ['name', 'for'],                  // Массив атрибутов, в которых необходимо провести замену
+ templateDataFieldAdditionalPart: '-template'  // -- прибавка к имени (для определения data-атрибута)
+ // например если замена проходит для атрибута for, 
+ // то шаблон будет искаться в атрибуте data-for-template
+ copyValuesInsteadOtherPlaceholders            // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Делать ли замену плейсхолдеров, которые остались в шаблоне после подстановки вместо searchRegexp (основная)
+ checkNameFragmentIsPlaceholderCallback        // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером                                        
+ }
+ * @returns {type.fn.replaceInChildrenAttrsUsingTemplateNameDataAttr.$parent}
+ */
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.replaceInAttrsUsingTemplatesFromDataFileds = function (options) {
+
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+    var settings = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
+        searchRegexp: /%fileds_group_number_lavel2%/g,
+        newValue: '888',
+        attributeNames: ['name', 'for'],
+        templateDataFieldAdditionalPart: '-template',
+        copyValuesInsteadOtherPlaceholders: false,
+        checkNameFragmentIsPlaceholderCallback: function (nameSection) {
+            return false;
+        }
+
+    }, options);
+
+    var templateValue = '';
+    var templateValueAfterReplacement = '';
+    settings.attributeNames.forEach(function (attrName, index, array) {
+        templateValue = $this.attr('data-' + attrName + settings.templateDataFieldAdditionalPart);
+        if (!js_wrapper_lib__WEBPACK_IMPORTED_MODULE_1___default.a.isEmpty(templateValue)) {
+            templateValueAfterReplacement = templateValue.replace(
+                    settings.searchRegexp,
+                    settings.newValue
+                    );
+
+            if ((attrName === 'name') // если работаем с атрибутом name
+                    && settings.copyValuesInsteadOtherPlaceholders) {
+                var attrValue = $this.attr(attrName);
+                var templateNameFragments = js_wrapper_lib__WEBPACK_IMPORTED_MODULE_1___default.a.getSquareBracketedFragments(templateValueAfterReplacement);
+
+                templateNameFragments.forEach(function (templateFragment, index, array) {
+
+                    if (settings.checkNameFragmentIsPlaceholderCallback(templateFragment)
+                            && !js_wrapper_lib__WEBPACK_IMPORTED_MODULE_1___default.a.isEmpty(attrValue)) { // если это заглушка (плейсхолдер) и есть из чего копировать       
+                        var initialFragment = js_wrapper_lib__WEBPACK_IMPORTED_MODULE_1___default.a.getSquareBracketedFragmentByNumber(attrValue, index);
+                        if (!js_wrapper_lib__WEBPACK_IMPORTED_MODULE_1___default.a.isEmpty(initialFragment)) { // если и в исходном (заменяемом значении) этот фрагмент не пуст
+
+                            templateValueAfterReplacement = templateValueAfterReplacement.replace(
+                                    templateFragment,
+                                    initialFragment
+                                    );
+                        }
+                    }
+                });
+            }
+
+            $this.attr(
+                    attrName,
+                    templateValueAfterReplacement
+                    );
+        }
+    });
+
+    return $this;
+}
+
+/**
+ * Проведёт замену подстроки по указанному регулярному выражению
+ * в списке указанных атрибутов
+ * 
+ * @param {regexp} searchRegexp    Регулярное выражения для подстроки которую надо заменить
+ * @param {literal} newValue       Новая подстрока
+ * @param {array} attributeNames   Массив атрибутов, в которых необходимо провести замену
+ * @returns {type.fn.replaceInAttrs.$parent}
+ */
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.replaceInAttrs = function (searchRegexp, newValue, attributeNames) {
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+    var oldValue = '';
+
+    attributeNames.forEach(function (attrName, index, array) {
+        oldValue = $this.attr(attrName);
+        $this.attr(attrName, oldValue.replace(searchRegexp, newValue));
+    });
+
+    return $this;
+}
+
+/***/ }),
+
+/***/ "./src/common/AlreadyInitIdsStorage.js":
+/*!*********************************************!*\
+  !*** ./src/common/AlreadyInitIdsStorage.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var js_wrapper_lib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-wrapper-lib */ "js-wrapper-lib");
+/* harmony import */ var js_wrapper_lib__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_wrapper_lib__WEBPACK_IMPORTED_MODULE_0__);
 
 
 
@@ -515,12 +789,12 @@ jutsAlreadyInitIdsStorage._storageData = {};
 jutsAlreadyInitIdsStorage.checkAndAddIfNeed = function(elementId, substorageName)
 {
    /* Инициаллизируем хранилище, на случае если его ещё не было*/
-   if (external_jswl_default.a.isNullOrUndefined(jutsAlreadyInitIdsStorage._storageData[substorageName])) {
+   if (js_wrapper_lib__WEBPACK_IMPORTED_MODULE_0___default.a.isNullOrUndefined(jutsAlreadyInitIdsStorage._storageData[substorageName])) {
        jutsAlreadyInitIdsStorage._storageData[substorageName] = [];
    }
 
    var result = true;
-   if (!external_jswl_default.a.inArray(elementId, jutsAlreadyInitIdsStorage._storageData[substorageName])) {
+   if (!js_wrapper_lib__WEBPACK_IMPORTED_MODULE_0___default.a.inArray(elementId, jutsAlreadyInitIdsStorage._storageData[substorageName])) {
        jutsAlreadyInitIdsStorage._storageData[substorageName].push(elementId); // запоминаем значение
        result = false;
    } 
@@ -528,243 +802,153 @@ jutsAlreadyInitIdsStorage.checkAndAddIfNeed = function(elementId, substorageName
    return result;
 }
 
-/* harmony default export */ var AlreadyInitIdsStorage = (jutsAlreadyInitIdsStorage);
-// CONCATENATED MODULE: ./src/common-plugins/parentCloser.js
+/* harmony default export */ __webpack_exports__["default"] = (jutsAlreadyInitIdsStorage);
+
+/***/ }),
+
+/***/ "./src/forms/getInputType.js":
+/*!***********************************!*\
+  !*** ./src/forms/getInputType.js ***!
+  \***********************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+
 /**
- * Удаление/сокрытие родительских элементов
- */
-
-
-
-
-/**
- * Плавно скрываем и удаляем родительский элемент при клике по данному/
- * Является обёрткой для __deleteParentByLevelForUnique()
+ * Определит тип тега (полезно, в частности для инпутов)
  * 
- * @param {options} options  настройки:
+ * @link https://stackoverflow.com/a/9116746
  * 
- * parentLevel:     0,          уровень родителя относительно элеента, на который вещается плагин
- parentContainerLevel:   1,   // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР уровень котейнера родителя (используются в частности для перенумерации элементов после удаления)
- containerCallback : function($container) {}    // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для вызова на контейнере 
- -- элементе уровня parentContainerLevel, в который происходит дублирование, 
- может быть использован, например, для перенумерации потомков, после очередного добавления
- 
- * @returns {block-dublicatorL#10.$.fn@call;each|Boolean}
+ * ((jquery check than all from elements are empty, in default state))
+ * 
+ * @return {String}
  */
-external_$_default.a.fn.parentCloser = function (options) {
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.getInputType = function () {
 
-    var settings = external_$_default.a.extend({
-        parentLevel: 0,
-        parentContainerLevel: 1,
-        containerCallback: function ($container) {}
-    }, options);
-
-
-    var elementId = '';
-    external_$_default()(this).uniqueId();
-    return this.each(function () {
-        elementId = external_$_default()(this).attr('id');
-
-        if (!AlreadyInitIdsStorage.checkAndAddIfNeed(elementId, 'parentCloser')) {
-            external_$_default()('#' + elementId).__deleteParentByLevelForUnique(settings);
-        }
-    });
+    return (this[0].tagName == "INPUT" ? 
+        this[0].type.toLowerCase() : 
+        this[0].tagName.toLowerCase());
 }
 
 
+/***/ }),
+
+/***/ "./src/forms/isInputsEmpty.js":
+/*!************************************!*\
+  !*** ./src/forms/isInputsEmpty.js ***!
+  \************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _getInputType_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getInputType.js */ "./src/forms/getInputType.js");
+/* harmony import */ var js_wrapper_lib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! js-wrapper-lib */ "js-wrapper-lib");
+/* harmony import */ var js_wrapper_lib__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(js_wrapper_lib__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
 
 /**
- * @see НЕ вызывать напрямую!
- * Палавно скрываем и удаляем родительский элемент при клике по данному
+ * Проверит что все потомки-инпуты любого уровня "пусты"
+ * (цель -- убедиться, что форма находится в состоянии "по умолчанию")
  * 
- * @param {options} options  настройки:
+ * ((jquery check than all from elements are empty, in default state))
  * 
- * parentLevel:     0,          уровень родителя относительно элеента, на который вещается плагин
- parentContainerLevel:   1,   // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР уровень котейнера родителя (используются в частности для перенумерации элементов после удаления)
- containerCallback : function($container) {}    // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для вызова на контейнере 
- -- элементе уровня parentContainerLevel, в который происходит дублирование, 
- может быть использован, например, для перенумерации потомков, после очередного добавления
- * @returns {undefined}
+ * @return {boolean}
  */
-external_$_default.a.fn.__deleteParentByLevelForUnique = function (options) {
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.isInputsEmpty = function (options) {
 
-    var settings = external_$_default.a.extend({
-        parentLevel: 0,
-        parentContainerLevel: 1,
-        containerCallback: function ($container) {}
+    var settings = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
+        ignoreCustom: true,
+        ignoreCustomTypes: ['radio'],
+        ignoreTypesDefault: ['submit'],
+        emptyZero: false, // считать ли ноль пустым значением
+        trim: true,
     }, options);
-
-    var $controlElement = external_$_default()(this);
-    this.click(onClick);
-
-    function onClick() {
-
-        var $controlElement = external_$_default()(this);
-        var $parent = $controlElement.nthParent(settings.parentLevel);
-        var $container = $controlElement.nthParent(settings.parentContainerLevel);
-
-        $parent.removeSmoothly({
-            afterRemoveFinishedCallback: settings.containerCallback,
-            afterRemoveFinishedParams: $container
-        });
-
-        return false;
-    }
-}
-// CONCATENATED MODULE: ./src/common-plugins/replaceInAttributes.js
-/**
- * Замены в атрибутах
- */
-
-
-
-/**
- * Проведёт замены значений атрибутов ВСЕХ ПОТОМКОВ данного элемента,
- * на значение сформированное из значения
- * специального поля-шаблона, в котором предварительно 
- * по регулярному выражению заменяется подстрока
- * 
- * @param {type} options -- массив вида (значения по умолчанию):
- *      {
- searchRegexp:     /%fileds_group_number_lavel2%/g,  // Регулярное выражения для подстроки которую надо заменить
- newValue:         '888',                            // Новая подстрока
- attributeNames:   ['name', 'for'],                  // Массив атрибутов, в которых необходимо провести замену
- templateDataFieldAdditionalPart: '-template'  // -- прибавка к имени (для определения data-атрибута)
- // например если замена проходит для атрибута for, 
- // то шаблон будет искаться в атрибуте data-for-template
- copyValuesInsteadOtherPlaceholders            // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Делать ли замену плейсхолдеров, которые остались в шаблоне после подстановки вместо searchRegexp (основная)
- checkNameFragmentIsPlaceholderCallback        // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером 
- }
- * @returns {type.fn.replaceInChildrenAttrsUsingTemplateNameDataAttr.$parent}
- */
-external_$_default.a.fn.replaceInChildrenAttrsUsingTemplatesFromDataFileds = function (options) {
-
-    var $parent = external_$_default()(this);
-
-    var settings = external_$_default.a.extend({
-        searchRegexp: /%fileds_group_number_lavel2%/g,
-        newValue: '888',
-        attributeNames: ['name', 'for'],
-        templateDataFieldAdditionalPart: '-template',
-        copyValuesInsteadOtherPlaceholders: false,
-        checkNameFragmentIsPlaceholderCallback: function (substr) {
-            return false;
-        }
-
-    }, options);
-
-    $parent.find('*').each(function ()
-    {
-        var $current = external_$_default()(this);
-        $current.replaceInAttrsUsingTemplatesFromDataFileds(settings);
-    })
-
-    return $parent;
-}
-
-
-
-/**
- * Проведёт замены значений атрибутов данного элемента,
- * на значения сформированные из значений
- * специальных полей-шаблонов 
- * (для каждого искомого атрибута такой data-атрибут-шаблон
- * должен существовать, иначе никаких действий для данного 
- * атрибута произведено не будет), в котором предварительно 
- * по регулярному выражению заменяется подстрока
- * 
- * @param {type} options -- массив вида (значения по умолчанию):
- *      {
- searchRegexp:     /%fileds_group_number_lavel2%/g,  // Регулярное выражения для подстроки которую надо заменить
- newValue:         '888',                            // Новая подстрока
- attributeNames:   ['name', 'for'],                  // Массив атрибутов, в которых необходимо провести замену
- templateDataFieldAdditionalPart: '-template'  // -- прибавка к имени (для определения data-атрибута)
- // например если замена проходит для атрибута for, 
- // то шаблон будет искаться в атрибуте data-for-template
- copyValuesInsteadOtherPlaceholders            // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР Делать ли замену плейсхолдеров, которые остались в шаблоне после подстановки вместо searchRegexp (основная)
- checkNameFragmentIsPlaceholderCallback        // НЕОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР колбек для определения того, что фрагмент атрибута является плейсхолдером                                        
- }
- * @returns {type.fn.replaceInChildrenAttrsUsingTemplateNameDataAttr.$parent}
- */
-external_$_default.a.fn.replaceInAttrsUsingTemplatesFromDataFileds = function (options) {
-
-    var $this = external_$_default()(this);
-
-    var settings = external_$_default.a.extend({
-        searchRegexp: /%fileds_group_number_lavel2%/g,
-        newValue: '888',
-        attributeNames: ['name', 'for'],
-        templateDataFieldAdditionalPart: '-template',
-        copyValuesInsteadOtherPlaceholders: false,
-        checkNameFragmentIsPlaceholderCallback: function (nameSection) {
-            return false;
-        }
-
-    }, options);
-
-    var templateValue = '';
-    var templateValueAfterReplacement = '';
-    settings.attributeNames.forEach(function (attrName, index, array) {
-        templateValue = $this.attr('data-' + attrName + settings.templateDataFieldAdditionalPart);
-        if (!external_jswl_default.a.isEmpty(templateValue)) {
-            templateValueAfterReplacement = templateValue.replace(
-                    settings.searchRegexp,
-                    settings.newValue
-                    );
-
-            if ((attrName === 'name') // если работаем с атрибутом name
-                    && settings.copyValuesInsteadOtherPlaceholders) {
-                var attrValue = $this.attr(attrName);
-                var templateNameFragments = external_jswl_default.a.getSquareBracketedFragments(templateValueAfterReplacement);
-
-                templateNameFragments.forEach(function (templateFragment, index, array) {
-
-                    if (settings.checkNameFragmentIsPlaceholderCallback(templateFragment)
-                            && !external_jswl_default.a.isEmpty(attrValue)) { // если это заглушка (плейсхолдер) и есть из чего копировать       
-                        var initialFragment = external_jswl_default.a.getSquareBracketedFragmentByNumber(attrValue, index);
-                        if (!external_jswl_default.a.isEmpty(initialFragment)) { // если и в исходном (заменяемом значении) этот фрагмент не пуст
-
-                            templateValueAfterReplacement = templateValueAfterReplacement.replace(
-                                    templateFragment,
-                                    initialFragment
-                                    );
-                        }
-                    }
-                });
+    
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+    var result = true;
+    $this.find(":input").each(function() {
+        var $input = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+        if (!(settings.ignoreCustom  // если игнорирование выключено или тип не из списка игнорирования
+            && js_wrapper_lib__WEBPACK_IMPORTED_MODULE_2___default.a.inArray($input.getInputType(), settings.ignoreCustomTypes))
+            && !js_wrapper_lib__WEBPACK_IMPORTED_MODULE_2___default.a.inArray($input.getInputType(), settings.ignoreTypesDefault)) {
+            
+            var value  = $input.val();
+            if (settings.trim) {
+               value = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.trim(value); 
             }
+            
+            console.log(value, $input.getInputType(), '|');
 
-            $this.attr(
-                    attrName,
-                    templateValueAfterReplacement
-                    );
-        }
+            if (!js_wrapper_lib__WEBPACK_IMPORTED_MODULE_2___default.a.isEmpty(value)
+                || (!settings.emptyZero && (value === 0  || value === '0')))
+            {
+                result = false;
+                return false; // breack each
+            }
+        } 
     });
-
-    return $this;
+    return result;
 }
 
-/**
- * Проведёт замену подстроки по указанному регулярному выражению
- * в списке указанных атрибутов
- * 
- * @param {regexp} searchRegexp    Регулярное выражения для подстроки которую надо заменить
- * @param {literal} newValue       Новая подстрока
- * @param {array} attributeNames   Массив атрибутов, в которых необходимо провести замену
- * @returns {type.fn.replaceInAttrs.$parent}
- */
-external_$_default.a.fn.replaceInAttrs = function (searchRegexp, newValue, attributeNames) {
-    var $this = external_$_default()(this);
 
-    var oldValue = '';
 
-    attributeNames.forEach(function (attrName, index, array) {
-        oldValue = $this.attr(attrName);
-        $this.attr(attrName, oldValue.replace(searchRegexp, newValue));
-    });
+/***/ }),
 
-    return $this;
-}
-// CONCATENATED MODULE: ./src/nested-forms/fromFiledsGroupAdderFromHiddenTemplate.js
+/***/ "./src/main.js":
+/*!*********************!*\
+  !*** ./src/main.js ***!
+  \*********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _common_plugins_juts_common_jquery_plugins_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common-plugins/juts-common-jquery-plugins.js */ "./src/common-plugins/juts-common-jquery-plugins.js");
+/* harmony import */ var _common_plugins_juts_common_jquery_ui_plugins_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common-plugins/juts-common-jquery-ui-plugins.js */ "./src/common-plugins/juts-common-jquery-ui-plugins.js");
+/* harmony import */ var _common_plugins_parentCloser_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./common-plugins/parentCloser.js */ "./src/common-plugins/parentCloser.js");
+/* harmony import */ var _common_plugins_replaceInAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./common-plugins/replaceInAttributes.js */ "./src/common-plugins/replaceInAttributes.js");
+/* harmony import */ var _nested_forms_fromFiledsGroupAdderFromHiddenTemplate_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./nested-forms/fromFiledsGroupAdderFromHiddenTemplate.js */ "./src/nested-forms/fromFiledsGroupAdderFromHiddenTemplate.js");
+/* harmony import */ var _nested_forms_parentInParentContainerDublicator_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./nested-forms/parentInParentContainerDublicator.js */ "./src/nested-forms/parentInParentContainerDublicator.js");
+/* harmony import */ var _forms_isInputsEmpty_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./forms/isInputsEmpty.js */ "./src/forms/isInputsEmpty.js");
+/* harmony import */ var _forms_getInputType_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./forms/getInputType.js */ "./src/forms/getInputType.js");
+// плагины общего назначения
+
+
+ 
+
+
+// Вложенные формы (группы полей)
+
+
+
+// Работа с формами
+ // определяет что все потомки-инпуты условно "пусты"
+ // определяем тип
+
+/***/ }),
+
+/***/ "./src/nested-forms/fromFiledsGroupAdderFromHiddenTemplate.js":
+/*!********************************************************************!*\
+  !*** ./src/nested-forms/fromFiledsGroupAdderFromHiddenTemplate.js ***!
+  \********************************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_plugins_juts_common_jquery_plugins_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common-plugins/juts-common-jquery-plugins.js */ "./src/common-plugins/juts-common-jquery-plugins.js");
 
 
 
@@ -782,12 +966,12 @@ external_$_default.a.fn.replaceInAttrs = function (searchRegexp, newValue, attri
  * 
  * @returns {type.fn.unbindAllForChildren.$this}
  */
-external_$_default.a.fn.fromFiledsGroupAdderFromHiddenTemplate = function (options) {
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.fromFiledsGroupAdderFromHiddenTemplate = function (options) {
 
 
-    var $this = external_$_default()(this);
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
 
-    var settings = external_$_default.a.extend({
+    var settings = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
         addSelector: "#add-group",
         deleteSelector: ".delete-group",
         templateContainerSelector: '#template-container',
@@ -833,7 +1017,7 @@ external_$_default.a.fn.fromFiledsGroupAdderFromHiddenTemplate = function (optio
      * 
      * @type window.$|jQuery|$|_$|@pro;window@pro;$|Window.$
      */
-    var $filedsGroupTemplateContainer = external_$_default()(settings.templateContainerSelector);
+    var $filedsGroupTemplateContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()(settings.templateContainerSelector);
 
     /*
      * Селектор элемента, в который завернуты поля одной группы (по-идее класс)
@@ -903,8 +1087,8 @@ external_$_default.a.fn.fromFiledsGroupAdderFromHiddenTemplate = function (optio
      */
     this.initAddProcess = function () {
 
-        external_$_default()(addFieldsGroupControlElementSelector).off("click"); // вырубаем иные обработчики
-        external_$_default()(addFieldsGroupControlElementSelector).on("click", function (e) { // добавляем блок с полями
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(addFieldsGroupControlElementSelector).off("click"); // вырубаем иные обработчики
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(addFieldsGroupControlElementSelector).on("click", function (e) { // добавляем блок с полями
             self.addNewFiledsGroup();
             self.initDeleteProcess();
             self.initAddtionalAfterNewFiledsAdding();
@@ -921,8 +1105,8 @@ external_$_default.a.fn.fromFiledsGroupAdderFromHiddenTemplate = function (optio
     this.initDeleteProcess = function () {
 
         /* Удаление группы полей */
-        external_$_default()(deleteFieldsGroupControlElementSelector).on("click", function () { // удаляем элемент
-            var $element = external_$_default()(this).nthParent(settings.parentLevelForDelete); // получаем родителя
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(deleteFieldsGroupControlElementSelector).on("click", function () { // удаляем элемент
+            var $element = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).nthParent(settings.parentLevelForDelete); // получаем родителя
 
             self.removeFiledsGroup($element);
             return false;
@@ -943,7 +1127,7 @@ external_$_default.a.fn.fromFiledsGroupAdderFromHiddenTemplate = function (optio
             width: "0px", // высоту к нулю
             opacity: 0, // прозрачность к нулю
         }, 600, function () {
-            external_$_default()(this).remove();
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).remove();
         }
         );
 
@@ -955,7 +1139,7 @@ external_$_default.a.fn.fromFiledsGroupAdderFromHiddenTemplate = function (optio
      */
     this.addNewFiledsGroup = function () {
 
-        var $newFiledsGroup = external_$_default()($filedsGroupTemplateContainer.html()
+        var $newFiledsGroup = jquery__WEBPACK_IMPORTED_MODULE_0___default()($filedsGroupTemplateContainer.html()
                 .replace(replaceGroupNumerRegexp, researchIndex));
         $newFiledsGroup.find('*').removeAttr('id'); // все потомки должны быть неуникальными
 
@@ -971,7 +1155,23 @@ external_$_default.a.fn.fromFiledsGroupAdderFromHiddenTemplate = function (optio
     self.initDeleteProcess();
 
 }
-// CONCATENATED MODULE: ./src/nested-forms/parentInParentContainerDublicator.js
+
+/***/ }),
+
+/***/ "./src/nested-forms/parentInParentContainerDublicator.js":
+/*!***************************************************************!*\
+  !*** ./src/nested-forms/parentInParentContainerDublicator.js ***!
+  \***************************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_AlreadyInitIdsStorage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/AlreadyInitIdsStorage.js */ "./src/common/AlreadyInitIdsStorage.js");
+/* harmony import */ var js_wrapper_lib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! js-wrapper-lib */ "js-wrapper-lib");
+/* harmony import */ var js_wrapper_lib__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(js_wrapper_lib__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
@@ -1017,10 +1217,10 @@ external_$_default.a.fn.fromFiledsGroupAdderFromHiddenTemplate = function (optio
  * @param {object}   options          настройки.
  * @returns {window.$|jQuery|$|_$|@pro;window@pro;$|Window.$}
  */
-external_$_default.a.fn.parentInParentContainerDublicator = function (options) {
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.parentInParentContainerDublicator = function (options) {
 
-    var $this = external_$_default()(this);
-    var settings = external_$_default.a.extend({
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+    var settings = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
         "thisSelector": '',
         "containerParentLevel": 1,
         "parentLevel": 0,
@@ -1030,22 +1230,22 @@ external_$_default.a.fn.parentInParentContainerDublicator = function (options) {
         templateDataFieldAdditionalPart: '-template',
         copyValuesInsteadOtherPlaceholders: false,
         checkNameFragmentIsPlaceholderCallback: function (attrSubstr) {
-            return external_jswl_default.a.checkForSubstring(attrSubstr, '%');
+            return js_wrapper_lib__WEBPACK_IMPORTED_MODULE_2___default.a.checkForSubstring(attrSubstr, '%');
         },
         containerCallback: function ($container) {}
     }, options);
 
 
 
-    external_$_default()(this).uniqueId();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).uniqueId();
     var elementId = '';
     return this.each(function () {
-        elementId = external_$_default()(this).attr('id');
+        elementId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('id');
 
-        if (!AlreadyInitIdsStorage.checkAndAddIfNeed(elementId,
+        if (!_common_AlreadyInitIdsStorage_js__WEBPACK_IMPORTED_MODULE_1__["default"].checkAndAddIfNeed(elementId,
                 'parentInParentContainerDublicator')) {
 
-            external_$_default()('#' + elementId).__relativeParentInParentContainerDublicatorForUnique(
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#' + elementId).__relativeParentInParentContainerDublicatorForUnique(
                     settings);
         }
     });
@@ -1085,10 +1285,10 @@ external_$_default.a.fn.parentInParentContainerDublicator = function (options) {
 * @param {object}   options          настройки.
 * @returns {window.$|jQuery|$|_$|@pro;window@pro;$|Window.$}
 */
-external_$_default.a.fn.__relativeParentInParentContainerDublicatorForUnique = function(options) {
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.fn.__relativeParentInParentContainerDublicatorForUnique = function(options) {
 
-    var $this = external_$_default()(this);
-    var settings = external_$_default.a.extend({
+    var $this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+    var settings = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
        "thisSelector": '', 
        "containerParentLevel": 1,   
        "parentLevel": 0, 
@@ -1108,7 +1308,7 @@ external_$_default.a.fn.__relativeParentInParentContainerDublicatorForUnique = f
 //        console.log('copy other:', settings.copyValuesInsteadOtherPlaceholders);
 //        console.log('bind on:', $this);
 
-    var $controlElement = external_$_default()(this);
+    var $controlElement = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
     var $container = $controlElement.nthParent(settings.containerParentLevel);
     var $template =  $controlElement.nthParent(settings.parentLevel);
 
@@ -1151,19 +1351,41 @@ external_$_default.a.fn.__relativeParentInParentContainerDublicatorForUnique = f
    }
 }
 
-// CONCATENATED MODULE: ./src/main.js
-// плагины общего назначения
 
+/***/ }),
 
- 
+/***/ "jquery":
+/*!********************!*\
+  !*** external "$" ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
+module.exports = $;
 
-// Вложенные формы (группы полей)
+/***/ }),
 
+/***/ "jquery-ui":
+/*!***********************!*\
+  !*** external "null" ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
+module.exports = null;
 
+/***/ }),
 
+/***/ "js-wrapper-lib":
+/*!***********************!*\
+  !*** external "jswl" ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = jswl;
 
 /***/ })
-/******/ ]);
+
+/******/ });
 //# sourceMappingURL=juts-no-jswl.js.map

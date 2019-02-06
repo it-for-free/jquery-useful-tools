@@ -8,3 +8,6 @@ import   './common-plugins/replaceInAttributes.js';
 import   './nested-forms/fromFiledsGroupAdderFromHiddenTemplate.js';
 import   './nested-forms/parentInParentContainerDublicator.js';
 
+// Работа с формами
+import   './forms/isInputsEmpty.js'; // определяет что все потомки-инпуты условно "пусты"
+import   './forms/getInputType.js'; // определяем тип

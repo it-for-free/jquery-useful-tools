@@ -9,7 +9,7 @@
   "dependencies": {
     "jquery": "3.2.1",
     "jquery-ui": "1.12.1",
-    "js-wrapper-lib": "0.0.6"
+    "js-wrapper-lib": "0.0.8"
   },
   "devDependencies": {
     "webpack": "^4.29.0",

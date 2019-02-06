@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>    
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>  isInputsEmpty Demo </title> 
+        
+    </head>
+ 
+    <body>
+        <h1> Привет! (тут заголовок)</h1>
+        остальное содержимое страницы
+        
+        
+        <form action="" method="post" id="my-form">  <!-- обработчик по тому же адресу что и эта форма -->
+            
+            <br>Имя:<br>
+            <input type="text" name="firstname"><br>
+            <p> Введите какой-нибудь текст:</p> 
+            <textarea id="my-text-field"  name="my-text" cols=60 rows=6></textarea>
+            <p> Вы житель пустыни?</p> 
+            <input type="radio" name="place" value="de"> Житель пустыни<br>
+            <input type="radio" name="place" value="vi"> Житель равнин<br>
+            <br>
+            
+            <p> О каких марках машины вы слышали?</p>
+            <select size='4' multiple>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+            </select> 
+            <br>
+            <p> Кто популярнее?</p>
+            <select>
+                <option value="pechkin">Почтальон Печкин</option>
+                <option value="fedor">Дядя Федор</option>
+            </select> 
+            <br>
+            
+            
+            <input type="submit" value="Отправить" title="Отправить данные формы">
+        </form> 
+        
+        <script src="../../depends/jquery-3.2.1.js"></script> 
+        <script src="../../depends/jquery-ui.js"></script>
+        
+          
+        <script src="../../dist/juts.js"></script>  <!-- Подключаем JS файл-->
+        <script src="example.js"></script> 
+    </body>
+</html>
