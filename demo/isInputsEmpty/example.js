@@ -12,11 +12,11 @@ $( "document" ).ready(function(){
 //      alert( 'стоп' );
 //    }, 180000);
 
-
-$("form :input").change(function() {
-    console.log('------');
     checkForm();
-});
+    $("form :input").change(function() {
+        console.log('------');
+        checkForm();
+    });
 
     
 });

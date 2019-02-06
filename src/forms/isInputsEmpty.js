@@ -37,7 +37,7 @@ $.fn.isInputsEmpty = function (options) {
                value = $.trim(value); 
             }
             
-//            console.log(value, $input.getInputType(), $input);
+            console.log(value, $input.getInputType(), $input);
 
             if (!jswl.isEmpty(value)
                 || (!settings.emptyZero && (value === 0  || value === '0')))
